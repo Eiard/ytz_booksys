@@ -22,12 +22,17 @@ public class BorrowServiceImpl implements BorrowService {
     /**
      * 相同类型 调用dao层对象
      */
-    private BorrowMapper borrowMapper = new BorrowMapperImpl();
+    private BorrowMapper borrowMapper;
 
     /**
      * 不同类型 调用service层对象
      */
-    private BookService bookService = new BookServiceImpl();
+    private BookService bookService;
+
+    public BorrowServiceImpl(){
+        borrowMapper = new BorrowMapperImpl();
+        bookService = new BookServiceImpl();
+    }
 
     @Override
     public boolean lendBorrow(Borrow borrow) {

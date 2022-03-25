@@ -101,6 +101,7 @@ public interface ReaderService {
 
     /**
      * Query By RdId And RdName
+     * Common interface
      *
      * 用于查询 注册时 学号与读者姓名 是否匹配
      *
