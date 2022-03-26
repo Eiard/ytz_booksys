@@ -21,7 +21,6 @@ public class JdbcUtils {
      * 从文件中读取信息
      * 然后进行Utils的属性初始化
      */
-    //静态代码块初始化DataSource相关配置信息
     static{
         try {
             //1.加载配置文件
@@ -34,6 +33,18 @@ public class JdbcUtils {
         }
     }
 
+    /**
+     * 不允许实例化对象
+     * 只可调用静态方法
+     */
+    private JdbcUtils() {
+
+    }
+
+    /**
+     * 返回连接池对象
+     * @return DataSource
+     */
     public static DataSource getDataSource(){
         return  dataSource;
     }
