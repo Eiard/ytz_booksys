@@ -87,17 +87,17 @@ public class GsonUtils {
      *  mapToJsonString Map<String, T>  ->  json
      *  listMapToJsonString List<Map<String, T>>  ->  json
      */
-    public static String objectToJsonString(Object object) {
+    public static <T> String objectToJsonString(T object) {
         return GSON.toJson(object);
     }
-    public static String objectToJsonString(Object object, GsonSerializerFeature gsonSerializerFeature) {
+    public static <T> String objectToJsonString(T object, GsonSerializerFeature gsonSerializerFeature) {
         if (gsonSerializerFeature == GsonSerializerFeature.WriteMapNullValue){
             return GSON_NULL.toJson(object);
         }
         return GSON.toJson(object);
     }
 
-    public static <T>  String listToJsonString(List<T> objectList) {
+    public static <T> String listToJsonString(List<T> objectList) {
         return GSON.toJson(objectList);
     }
     public static <T> String listToJsonString(List<T> objectList, GsonSerializerFeature gsonSerializerFeature) {
@@ -115,6 +115,16 @@ public class GsonUtils {
             return GSON_NULL.toJson(objectMap);
         }
         return GSON.toJson(objectMap);
+    }
+
+    public static <T> String mapToJsonString(List<Map<String, T>> objectListMap) {
+        return GSON.toJson(objectListMap);
+    }
+    public static <T> String mapToJsonString(List<Map<String, T>> objectListMap, GsonSerializerFeature gsonSerializerFeature) {
+        if (gsonSerializerFeature == GsonSerializerFeature.WriteMapNullValue){
+            return GSON_NULL.toJson(objectListMap);
+        }
+        return GSON.toJson(objectListMap);
     }
 
     /**
