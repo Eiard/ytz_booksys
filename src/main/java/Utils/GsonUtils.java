@@ -49,6 +49,14 @@ public class GsonUtils {
                 .create();
     }
 
+    /**
+     * 不允许实例化对象
+     * 只可调用静态方法
+     */
+    private GsonUtils(){
+
+    }
+
     //获取gson解析器
     public static Gson getGSON() {
         return GSON;
