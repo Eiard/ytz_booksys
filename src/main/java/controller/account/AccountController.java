@@ -45,12 +45,12 @@ public class AccountController extends HttpServlet {
      *
      * @param identification
      * @param password
-     * @return boolean
+     * @return int
      */
     public int login(String identification, String password) {
 
         return 0;
-       }
+    }
 
     /**
      * Check Sign Up Information
