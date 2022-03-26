@@ -25,20 +25,22 @@ public class AccountController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
+        System.out.println("doget");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        System.out.println("dopost");
     }
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println(1);
     }
 
     /**
      * Check Login Information
-     * <p>
+     *
      * 登录判断
      * return
      * -1   账号或密码错误
@@ -56,7 +58,7 @@ public class AccountController extends HttpServlet {
 
     /**
      * Check Sign Up Information
-     * <p>
+     *
      * 注册判断
      * return
      * 0    注册成功
@@ -107,9 +109,7 @@ public class AccountController extends HttpServlet {
 
     /**
      * Log Out Account
-     * <p>
-     * 注销
-     * <p>
+     *
      * 注销时应判断该账号 书籍是否全部归还
      * return
      * 0    注销成功
@@ -130,7 +130,6 @@ public class AccountController extends HttpServlet {
             accountService.deleteAccount(identification);
             return 0;
         }
-
         return 1;
     }
 
