@@ -96,6 +96,7 @@ public interface AccountService {
 
     /**
      * Identification And Password Is Right?
+     * Common interface
      *
      * 登录 用户名和密码 验证
      * 并且获取其权限值
@@ -108,4 +109,13 @@ public interface AccountService {
      * @return int
      */
     int identificationAndPassword(String identification,String password);
+
+    /**
+     * 通过用户名找到其学号
+     * Common interface
+     *
+     * @param identification
+     * @return Account
+     */
+    Account queryOneAccount(String identification);
 }

@@ -1,5 +1,7 @@
 import Utils.GsonUtils;
 import org.junit.Test;
+import service.borrow.BorrowService;
+import service.borrow.BorrowServiceImpl;
 
 /**
  * # -*- coding:utf-8 -*- #
@@ -9,6 +11,7 @@ import org.junit.Test;
 public class a21 {
     @Test
     public void s2123(){
-
+        BorrowService borrowService = new BorrowServiceImpl();
+        System.out.println(borrowService.noReturnBook(1).size());
     }
 }

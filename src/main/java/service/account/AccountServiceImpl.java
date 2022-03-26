@@ -74,4 +74,15 @@ public class AccountServiceImpl implements AccountService {
         }
         return -1;
     }
+
+    @Override
+    public Account queryOneAccount(String identification) {
+        List<Account> accountList = queryAllAccount();
+        for (Account account : accountList) {
+            if (identification.equals(account.getIdentification())) {
+                return account;
+            }
+        }
+        return null;
+    }
 }
