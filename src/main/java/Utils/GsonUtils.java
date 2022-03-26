@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
 
@@ -73,6 +72,7 @@ public class GsonUtils {
      * ---------------------------------------------------------------------------
      *  对象 --> json
      *  返回对象类型可通过 返回值的T来确定
+     *  可过滤null或空
      *
      *  objectToJsonString object  ->  json
      *  listToJsonString List<T>  ->  json
@@ -88,6 +88,7 @@ public class GsonUtils {
         }
         return GSON.toJson(object);
     }
+
     public static <T>  String listToJsonString(List<T> objectList) {
         return GSON.toJson(objectList);
     }
@@ -97,6 +98,7 @@ public class GsonUtils {
         }
         return GSON.toJson(objectList);
     }
+
     public static <T> String mapToJsonString(Map<String, T> objectMap) {
         return GSON.toJson(objectMap);
     }
