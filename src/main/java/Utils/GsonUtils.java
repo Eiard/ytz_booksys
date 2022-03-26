@@ -22,10 +22,12 @@ public class GsonUtils {
 
     /**
      * 枚举
-     *      过滤掉空字符串
+     * WriteValue     不过滤
+     * WriteNullValue 过滤 null 或 空
      */
     public enum GsonSerializerFeature {
-        WriteMapNullValue
+        WriteValue,
+        WriteNullValue
     }
 
     /**
@@ -53,7 +55,7 @@ public class GsonUtils {
      * 不允许实例化对象
      * 只可调用静态方法
      */
-    private GsonUtils(){
+    private GsonUtils() {
 
     }
 
@@ -78,75 +80,78 @@ public class GsonUtils {
 
     /**
      * ---------------------------------------------------------------------------
-     *  对象 --> json
-     *  返回对象类型可通过 返回值的T来确定
-     *  可过滤null或空
-     *
-     *  objectToJsonString object  ->  json
-     *  listToJsonString List<T>  ->  json
-     *  mapToJsonString Map<String, T>  ->  json
-     *  listMapToJsonString List<Map<String, T>>  ->  json
+     * 对象 --> json
+     * 返回对象类型可通过 返回值的T来确定
+     * 可过滤null或空
+     * <p>
+     * objectToJsonString object  ->  json
+     * listToJsonString List<T>  ->  json
+     * mapToJsonString Map<String, T>  ->  json
+     * listMapToJsonString List<Map<String, T>>  ->  json
      */
-    public static <T> String objectToJsonString(T object) {
-        return GSON.toJson(object);
-    }
     public static <T> String objectToJsonString(T object, GsonSerializerFeature gsonSerializerFeature) {
-        if (gsonSerializerFeature == GsonSerializerFeature.WriteMapNullValue){
+        if (gsonSerializerFeature == GsonSerializerFeature.WriteNullValue) {
             return GSON_NULL.toJson(object);
+        } else if (gsonSerializerFeature == GsonSerializerFeature.WriteValue) {
+            return GSON.toJson(object);
         }
-        return GSON.toJson(object);
+        return null;
     }
 
-    public static <T> String listToJsonString(List<T> objectList) {
-        return GSON.toJson(objectList);
-    }
     public static <T> String listToJsonString(List<T> objectList, GsonSerializerFeature gsonSerializerFeature) {
-        if (gsonSerializerFeature == GsonSerializerFeature.WriteMapNullValue){
+        if (gsonSerializerFeature == GsonSerializerFeature.WriteNullValue) {
             return GSON_NULL.toJson(objectList);
+        } else if (gsonSerializerFeature == GsonSerializerFeature.WriteValue) {
+            return GSON.toJson(objectList);
         }
-        return GSON.toJson(objectList);
+        return null;
     }
 
-    public static <T> String mapToJsonString(Map<String, T> objectMap) {
-        return GSON.toJson(objectMap);
-    }
-    public static <T> String mapToJsonString(Map<String, T>objectMap, GsonSerializerFeature gsonSerializerFeature) {
-        if (gsonSerializerFeature == GsonSerializerFeature.WriteMapNullValue){
+    public static <T> String mapToJsonString(Map<String, T> objectMap, GsonSerializerFeature gsonSerializerFeature) {
+        if (gsonSerializerFeature == GsonSerializerFeature.WriteNullValue) {
             return GSON_NULL.toJson(objectMap);
+        } else if (gsonSerializerFeature == GsonSerializerFeature.WriteValue) {
+            return GSON.toJson(objectMap);
         }
-        return GSON.toJson(objectMap);
+        return null;
     }
 
-    public static <T> String mapToJsonString(List<Map<String, T>> objectListMap) {
-        return GSON.toJson(objectListMap);
-    }
     public static <T> String mapToJsonString(List<Map<String, T>> objectListMap, GsonSerializerFeature gsonSerializerFeature) {
-        if (gsonSerializerFeature == GsonSerializerFeature.WriteMapNullValue){
+        if (gsonSerializerFeature == GsonSerializerFeature.WriteNullValue) {
             return GSON_NULL.toJson(objectListMap);
+        } else if (gsonSerializerFeature == GsonSerializerFeature.WriteValue) {
+            return GSON.toJson(objectListMap);
         }
-        return GSON.toJson(objectListMap);
+        return null;
     }
 
     /**
      * ---------------------------------------------------------------------------
-     *  Json --> 对象(T)
-     *  返回对象类型可通过 返回值的T来确定
-     *
-     *  strToJavaBeanMaps json  ->  T
-     *  strToJavaBeanList json  ->  List<T>
-     *  strToJavaBeanMaps json  ->  Map<String,T>
-     *  strToJavaBeanListMaps json  ->  List<Map<String,T>>
+     * Json --> 对象(T)
+     * 返回对象类型可通过 返回值的T来确定
+     * <p>
+     * strToJavaBeanMaps json  ->  T
+     * strToJavaBeanList json  ->  List<T>
+     * strToJavaBeanMaps json  ->  Map<String,T>
+     * strToJavaBeanListMaps json  ->  List<Map<String,T>>
      */
     public static <T> T strToJavaBean(String gsonString) {
-        return GSON.fromJson(gsonString, new TypeToken<T>() {}.getType());
+        return GSON.fromJson(gsonString, new TypeToken<T>() {
+        }.getType());
     }
+
     public static <T> List<T> strToJavaBeanList(String gsonString) {
-        return GSON.fromJson(gsonString, new TypeToken<List<T>>() {}.getType());
+        return GSON.fromJson(gsonString, new TypeToken<List<T>>() {
+        }.getType());
     }
+
     public static <T> Map<String, T> strToJavaBeanMaps(String gsonString) {
-        return GSON.fromJson(gsonString, new TypeToken<Map<String, T>>() {}.getType());
+        return GSON.fromJson(gsonString, new TypeToken<Map<String, T>>() {
+        }.getType());
     }
+
     public static <T> List<Map<String, T>> strToJavaBeanListMaps(String gsonString) {
-        return GSON.fromJson(gsonString, new TypeToken<List<Map<String, T>>>() {}.getType());
+        return GSON.fromJson(gsonString, new TypeToken<List<Map<String, T>>>() {
+        }.getType());
     }
 }
