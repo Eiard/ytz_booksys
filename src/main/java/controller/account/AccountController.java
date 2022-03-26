@@ -92,7 +92,7 @@ public class AccountController extends HttpServlet {
         /**
          * 第三步 判断姓名 与 学号是否匹配是否存在
          */
-        if (readerService.queryReaderExist(account.getRdId(), name)) {
+        if (!(readerService.queryReaderExist(account.getRdId(), name))) {
             return 3;
         }
 
