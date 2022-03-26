@@ -83,7 +83,6 @@ public class GsonUtils {
      * 对象 --> json
      * 返回对象类型可通过 返回值的T来确定
      * 可过滤null或空
-     * <p>
      * objectToJsonString object  ->  json
      * listToJsonString List<T>  ->  json
      * mapToJsonString Map<String, T>  ->  json
@@ -129,7 +128,6 @@ public class GsonUtils {
      * ---------------------------------------------------------------------------
      * Json --> 对象(T)
      * 返回对象类型可通过 返回值的T来确定
-     * <p>
      * strToJavaBeanMaps json  ->  T
      * strToJavaBeanList json  ->  List<T>
      * strToJavaBeanMaps json  ->  Map<String,T>
