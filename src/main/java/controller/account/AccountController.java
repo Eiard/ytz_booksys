@@ -51,7 +51,7 @@ public class AccountController extends HttpServlet {
      * @param password
      * @return int
      */
-    public int login(String identification, String password) {
+    protected int login(String identification, String password) {
         AccountService accountService = new AccountServiceImpl();
         return accountService.identificationAndPassword(identification, password);
     }
@@ -71,7 +71,7 @@ public class AccountController extends HttpServlet {
      * @param name
      * @return int
      */
-    public int signUp(Account account, String name) {
+    protected int signUp(Account account, String name) {
         AccountService accountService = new AccountServiceImpl();
         ReaderService readerService = new ReaderServiceImpl();
 
@@ -118,7 +118,7 @@ public class AccountController extends HttpServlet {
      * @param identification
      * @return int
      */
-    public int logOut(String identification) {
+    protected int logOut(String identification) {
         AccountService accountService = new AccountServiceImpl();
         BorrowService borrowService = new BorrowServiceImpl();
 
