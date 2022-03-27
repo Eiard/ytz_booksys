@@ -44,7 +44,7 @@ public class AccountController extends HttpServlet {
      * 登录判断
      * return
      * -1   账号或密码错误
-     * 0    User
+     * 0    User=
      * 1    Root
      *
      * @param identification
