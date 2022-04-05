@@ -1,7 +1,6 @@
 package dao.account;
 
 import Utils.JdbcUtils;
-import lombok.NonNull;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import pojo.Account;
@@ -60,4 +59,6 @@ public class AccountMapperImpl implements AccountMapper {
 
         return Sql.query(sql, new BeanPropertyRowMapper<Account>(Account.class));
     }
+
+
 }
