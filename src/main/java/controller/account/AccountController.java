@@ -32,6 +32,17 @@ public class AccountController extends HttpServlet {
         System.out.println("dopost");
     }
 
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.service(req, resp);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req,resp);
+        System.out.println(1);
+    }
+
     /**
      * Check Login Information
      * 登录判断
