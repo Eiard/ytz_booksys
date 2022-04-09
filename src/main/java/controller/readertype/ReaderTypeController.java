@@ -26,7 +26,7 @@ public class ReaderTypeController extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        super.service(req, resp);
     }
 
 
