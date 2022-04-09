@@ -22,32 +22,18 @@ import java.io.IOException;
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/Account.do"})
 public class AccountController extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
-
-    }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         String name = req.getParameter("name");
         String password = req.getParameter("password");
         System.out.println(name);
         System.out.println(password);
         System.out.println("dopost");
-
-    }
-
-    @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.service(req, resp);
     }
 
     /**
      * Check Login Information
-     * <p>
      * 登录判断
      * return
      * -1   账号或密码错误
@@ -65,7 +51,6 @@ public class AccountController extends HttpServlet {
 
     /**
      * Check Sign Up Information
-     * <p>
      * 注册判断
      * return
      * 0    注册成功
@@ -116,7 +101,6 @@ public class AccountController extends HttpServlet {
 
     /**
      * Log Out Account
-     * <p>
      * 注销时应判断该账号 书籍是否全部归还
      * return
      * 0    注销成功
