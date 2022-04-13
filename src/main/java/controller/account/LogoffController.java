@@ -38,9 +38,12 @@ public class LogoffController extends HttpServlet {
         AccountService accountService = new AccountServiceImpl();
         BorrowService borrowService = new BorrowServiceImpl();
 
-        // 先找到自己所有信息
         Account account = accountService.queryOneAccount(identification);
 
+        /**
+         * 没有未还的书籍(可注销)     LOGOFF_SUCCESS
+         * 有未还的书籍(不可注销)     LOGOFF_ERROR
+         */
         if (borrowService.noReturnBook(account.getRdId()).size() == 0) {
             accountService.deleteAccount(identification);
             return AccountEnum.LOGOFF_SUCCESS;

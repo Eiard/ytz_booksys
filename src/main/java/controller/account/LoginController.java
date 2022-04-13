@@ -36,6 +36,13 @@ public class LoginController extends HttpServlet {
         AccountService accountService = new AccountServiceImpl();
 
         int status = accountService.identificationAndPassword(identification, password);
+
+        /**
+         *   账号或密码错误   LOGIN_ACCOUNT_PASSWORD_ERROR
+         *   USER登录成功    LOGIN_USER_SUCCESS
+         *   ROOT登录成功    LOGIN_ROOT_SUCCESS
+         *   未知错误        UNKNOWN_ERROR
+         */
         if (status == -1) {
             return AccountEnum.LOGIN_ACCOUNT_PASSWORD_ERROR;
         } else if (status == 0) {
