@@ -6,8 +6,12 @@ import service.account.AccountServiceImpl;
 import service.borrow.BorrowService;
 import service.borrow.BorrowServiceImpl;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * # -*- coding:utf-8 -*- #
@@ -16,8 +20,12 @@ import javax.servlet.http.HttpServlet;
  */
 @WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
 public class LogoffController extends HttpServlet {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
+
+    }
 
     /**
      * Log Off Account
@@ -36,7 +44,6 @@ public class LogoffController extends HttpServlet {
         // 先找到自己所有信息
         Account account = accountService.queryOneAccount(identification);
 
-        // 判断自己是否有未还的书 (此时不能注销)
         if (borrowService.noReturnBook(account.getRdId()).size() == 0) {
             accountService.deleteAccount(identification);
             return 0;

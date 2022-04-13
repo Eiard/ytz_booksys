@@ -29,36 +29,8 @@ import java.util.Map;
 public class LoginController extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
-        String name = req.getParameter("name");
-        String password = req.getParameter("password");
-
-        PrintWriter out = resp.getWriter();
-
-
-
-        ResponseDataMap responseDataMap = new ResponseDataMap(1, "2", 3);
-        out.println(responseDataMap.toJson());
-
-
-        Map map = new HashMap();
-        map.put("name", "zahngsan");
-        map.put("age", 19);
-
-
-        System.out.println(name);
-        System.out.println(password);
-        System.out.println("dopost");
-
-
-    }
-
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println(1);
     }
 
     /**
@@ -77,7 +49,6 @@ public class LoginController extends HttpServlet {
         AccountService accountService = new AccountServiceImpl();
         return accountService.identificationAndPassword(identification, password);
     }
-
 
 
 }
