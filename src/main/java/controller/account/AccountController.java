@@ -1,5 +1,6 @@
 package controller.account;
 
+import Utils.ResponseDataMap;
 import pojo.Account;
 import service.account.AccountService;
 import service.account.AccountServiceImpl;
@@ -14,19 +15,39 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * # -*- coding:utf-8 -*- #
  * 作者:30671
  * 日期:2022年03月03日10时52分
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/Account.do"})
+@WebServlet(name = "LoginServlet", urlPatterns = {"/Account"})
 public class AccountController extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
+
         String name = req.getParameter("name");
         String password = req.getParameter("password");
+
+        PrintWriter out = resp.getWriter();
+
+
+
+        ResponseDataMap responseDataMap = new ResponseDataMap(1, "2", 3);
+        out.println(responseDataMap.toJson());
+
+
+        Map map = new HashMap();
+        map.put("name", "zahngsan");
+        map.put("age", 19);
+
+
         System.out.println(name);
         System.out.println(password);
         System.out.println("dopost");
@@ -39,7 +60,7 @@ public class AccountController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req,resp);
+        doPost(req, resp);
         System.out.println(1);
     }
 
