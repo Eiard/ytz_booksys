@@ -1,5 +1,6 @@
 package controller.account;
 
+import controller.controllerEnum.AccountEnum;
 import pojo.Account;
 import service.account.AccountService;
 import service.account.AccountServiceImpl;
@@ -32,33 +33,21 @@ public class SignController extends HttpServlet {
     /**
      * Check Register Information
      * 注册判断
-     * return
-     * 0    注册成功
-     * 1    用户名被注册过
-     * 2    学号被注册过
-     * 3    学号和姓名不匹配 (冒名注册)
-     * 4    服务器问题注册失败
      *
      * @param account
      * @param name
-     * @return int
+     * @return AccountEnum
      */
-    protected int sign(Account account, String name) {
+    protected AccountEnum sign(Account account, String name) {
         AccountService accountService = new AccountServiceImpl();
         ReaderService readerService = new ReaderServiceImpl();
 
-        /**
-         * 第一步 判断用户名是否被注册过
-         */
         if (accountService.identificationIsExist(account.getIdentification())) {
-            return 1;
+            return AccountEnum.SIGN_IDENTIFICATION_EXIST_ERROR;
         }
 
-        /**
-         * 第二步 判断学号是否被注册
-         */
         if (accountService.accountIsExist(account.getRdId())) {
-            return 2;
+            return AccountEnum.SIGN_RDID_EXIST_ERROR;
         }
 
         /**

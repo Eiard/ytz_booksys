@@ -1,5 +1,6 @@
 package controller.account;
 
+import controller.controllerEnum.AccountEnum;
 import pojo.Account;
 import service.account.AccountService;
 import service.account.AccountServiceImpl;
@@ -24,20 +25,16 @@ public class LogoffController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-
     }
 
     /**
      * Log Off Account
-     * 注销时应判断该账号 书籍是否全部归还
-     * return
-     * 0    注销成功
-     * 1    有未还的书籍 无法注销
+     * 注销时应判断
      *
      * @param identification
-     * @return int
+     * @return AccountEnum
      */
-    protected int logOff(String identification) {
+    protected AccountEnum logOff(String identification) {
         AccountService accountService = new AccountServiceImpl();
         BorrowService borrowService = new BorrowServiceImpl();
 
@@ -46,8 +43,8 @@ public class LogoffController extends HttpServlet {
 
         if (borrowService.noReturnBook(account.getRdId()).size() == 0) {
             accountService.deleteAccount(identification);
-            return 0;
+            return AccountEnum.LOGOFF_SUCCESS;
         }
-        return 1;
+        return AccountEnum.LOGOFF_ERROR;
     }
 }

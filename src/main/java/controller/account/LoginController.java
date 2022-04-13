@@ -1,13 +1,8 @@
 package controller.account;
 
-import Utils.ResponseDataMap;
-import pojo.Account;
+import controller.controllerEnum.AccountEnum;
 import service.account.AccountService;
 import service.account.AccountServiceImpl;
-import service.borrow.BorrowService;
-import service.borrow.BorrowServiceImpl;
-import service.reader.ReaderService;
-import service.reader.ReaderServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,10 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * # -*- coding:utf-8 -*- #
@@ -36,18 +27,23 @@ public class LoginController extends HttpServlet {
     /**
      * Check Login Information
      * 登录判断
-     * return
-     * -1   账号或密码错误
-     * 0    User=
-     * 1    Root
      *
      * @param identification
      * @param password
-     * @return int
+     * @return AccountEnum
      */
-    protected int login(String identification, String password) {
+    protected AccountEnum login(String identification, String password) {
         AccountService accountService = new AccountServiceImpl();
-        return accountService.identificationAndPassword(identification, password);
+
+        int status = accountService.identificationAndPassword(identification, password);
+        if (status == -1) {
+            return AccountEnum.LOGIN_ACCOUNT_PASSWORD_ERROR;
+        } else if (status == 0) {
+            return AccountEnum.LOGIN_USER_SUCCESS;
+        } else if (status == 1) {
+            return AccountEnum.LOGIN_ROOT_SUCCESS;
+        }
+        return AccountEnum.UNKNOWN_ERROR;
     }
 
 
