@@ -50,22 +50,15 @@ public class SignController extends HttpServlet {
             return AccountEnum.SIGN_RDID_EXIST_ERROR;
         }
 
-        /**
-         * 第三步 判断姓名 与 学号是否匹配是否存在
-         */
         if (!(readerService.queryReaderExist(account.getRdId(), name))) {
-            return 3;
+            return AccountEnum.SIGN_RDID_MATCH_RDNAME_ERROR;
         }
 
-
-        /**
-         * 第四步 注册
-         */
         if (accountService.addAccount(account) == 0) {
-            return 4;
+            return AccountEnum.SIGN_SUCCESS;
         }
 
-        return 0;
+        return AccountEnum.UNKNOWN_ERROR;
     }
 
 }
