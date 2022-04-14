@@ -7,8 +7,8 @@ package controller.controllerEnum;
  */
 public enum AccountEnum {
     /**
-     *     User
      *     Root
+     *     User
      *     账号或密码错误
      */
     LOGIN_ROOT_SUCCESS,

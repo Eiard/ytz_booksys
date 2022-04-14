@@ -24,6 +24,9 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setHeader("content-type", "text/html;charset=utf-8");
+        PrintWriter out = resp.getWriter();
+
         String userName = req.getParameter("userName");
         String password = req.getParameter("password");
 
@@ -33,14 +36,18 @@ public class LoginController extends HttpServlet {
 
         if (accountEnum == AccountEnum.LOGIN_USER_SUCCESS){
             sendData.setStatus(accountEnum.ordinal());
+            sendData.setMsg(accountEnum.toString());
+            sendData.setData("");
+        }else if (accountEnum == AccountEnum.LOGIN_ROOT_SUCCESS){
+            sendData.setStatus(accountEnum.ordinal());
+            sendData.setMsg(accountEnum.toString());
+            sendData.setData("");
         }
 
-
-        PrintWriter writer = resp.getWriter();
-
-        writer.write(sendData.toJson(GsonUtils.GsonSerializerFeature.WriteNullValue));
-
-
+        /*
+          字节流输出(json格式)
+         */
+        out.write(sendData.toJson(GsonUtils.GsonSerializerFeature.WriteNullValue));
     }
 
     /**
