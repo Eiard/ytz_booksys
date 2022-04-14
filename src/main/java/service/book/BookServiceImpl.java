@@ -27,6 +27,10 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public int addBook(Book book) {
+        List<Book> books = fuzzyQueryAllBook(book.getBkName(), book.getBkAuthor(), book.getBkPress());
+        if (books.size() == 1){
+            return 2;
+        }
         return bookMapper.addBook(book);
     }
 

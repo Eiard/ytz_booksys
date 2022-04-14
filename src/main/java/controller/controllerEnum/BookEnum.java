@@ -7,6 +7,15 @@ package controller.controllerEnum;
  */
 public enum BookEnum {
 
+    /**
+     * 添加书籍成功
+     * 添加的书籍有书名 作者 出版社 全相同
+     */
+    ADD_BOOK_SUCCESS,
+    ADD_SAME_BOOK_ERROR,
+
+
+
 
     /**
      * 改变书籍的状态

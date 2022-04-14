@@ -14,7 +14,6 @@ public interface ReaderTypeService {
     /**
      * Add ReaderType
      * Root interface
-     *
      * 添加一个读者类别
      *
      * @param readerType
@@ -25,7 +24,6 @@ public interface ReaderTypeService {
     /**
      * Add ReaderTypes
      * Root interface
-     *
      * 添加多个读者类别
      *
      * @param readerTypes
@@ -36,7 +34,6 @@ public interface ReaderTypeService {
     /**
      * Delete ReaderType
      * Root interface
-     *
      * 删除一个读者类别
      *
      * @param readerType
@@ -47,7 +44,6 @@ public interface ReaderTypeService {
     /**
      * Delete ReaderTypes
      * Root interface
-     *
      * 删除一个读者类别
      *
      * @param readerTypes
@@ -58,7 +54,6 @@ public interface ReaderTypeService {
     /**
      * Update ReaderType
      * Root interface
-     *
      * 删除多个读者类别
      *
      * @param readerType
@@ -69,7 +64,6 @@ public interface ReaderTypeService {
     /**
      * Update ReaderType
      * Root interface
-     *
      * 删除多个读者类别
      *
      * @param readerTypes
@@ -80,6 +74,7 @@ public interface ReaderTypeService {
     /**
      * Query All ReaderType Information
      * Common interface
+     * 查询所有读者类别
      *
      * @return List<ReaderType>
      */
@@ -97,6 +92,7 @@ public interface ReaderTypeService {
     /**
      * Fuzzy Query
      * Root interface
+     * 通过读者类型名模糊查询
      *
      * @param rdTypeName
      * @return List<ReaderType>

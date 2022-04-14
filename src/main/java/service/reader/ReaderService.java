@@ -14,7 +14,6 @@ public interface ReaderService {
     /**
      * Add Reader
      * Root interface
-     *
      * 添加一个读者
      *
      * @param reader
@@ -25,7 +24,6 @@ public interface ReaderService {
     /**
      * Add Readers
      * Root interface
-     *
      * 添加多个读者
      *
      * @param readers
@@ -36,7 +34,6 @@ public interface ReaderService {
     /**
      * Update Reader Information Or Delete Reader
      * Root interface
-     *
      * 更新一个读者信息
      *
      * @param reader
@@ -47,7 +44,6 @@ public interface ReaderService {
     /**
      * Update Reader Information Or Delete Reader
      * Root interface
-     *
      * 更新多个读者信息
      *
      * @param readers
@@ -58,7 +54,6 @@ public interface ReaderService {
     /**
      * Query All Reader Information
      * Common interface
-     *
      * 查询所有读者
      *
      * @return List<Reader>
@@ -68,7 +63,6 @@ public interface ReaderService {
     /**
      * Change User State  0(Active)  1(Ban)
      * Common interface
-     *
      * 改变读者状态  启用0  未启用1
      *
      * @param reader
@@ -79,7 +73,6 @@ public interface ReaderService {
     /**
      * Count The Num Of Reader Is ReaderType
      * Common interface
-     *
      * 查询某个读者类别的读者人数
      *
      * @param rdType
@@ -90,7 +83,6 @@ public interface ReaderService {
     /**
      * Fuzzy Query By rdName And rdType
      * Root interface
-     *
      * 模糊查询  通过姓名 和 部门(院) 类别查询
      *
      * @param rdName
@@ -102,7 +94,6 @@ public interface ReaderService {
     /**
      * Query By RdId And RdName
      * Common interface
-     *
      * 用于查询 注册时 学号与读者姓名 是否匹配
      *
      * @param rdId
@@ -114,7 +105,6 @@ public interface ReaderService {
     /**
      * Query Reader By RdId
      * Common interface
-     *
      * 通过学号 找到读者信息
      *
      * @param rdId

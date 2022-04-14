@@ -15,7 +15,6 @@ public interface AccountService {
     /**
      * Sign Up
      * User private interface
-     *
      * 注册一个用户
      * 注册成功 返回1
      * 注册失败 返回0
@@ -28,7 +27,6 @@ public interface AccountService {
     /**
      * Log Out
      * Common interface
-     *
      * 注销图书馆读者账号
      * 删除成功 返回1
      * 删除失败 返回0
@@ -42,7 +40,6 @@ public interface AccountService {
      * Update User Information
      * Only password QQ  user can change
      * Common interface
-     *
      * 读者修改自己 图书馆账号的信息
      * 管理员也可以修改读者图书馆账号的信息
      * 更新成功 返回1
@@ -59,7 +56,6 @@ public interface AccountService {
     /**
      * Query All Account
      * Common interface
-     *
      * 管理员用来查询所有读者信息
      *
      * @return List<Account>
@@ -68,7 +64,6 @@ public interface AccountService {
 
     /**
      * Identification is Already Exist ?
-     *
      * 用户名是否已被注册
      * 用户名
      * true(存在)         为已被注册
@@ -83,7 +78,6 @@ public interface AccountService {
      * rdId is Already Exist ?
      * Avoid Sign Up Again
      * Common interface
-     *
      * 判断 学号是否存在 只有学号存在的人才能注册一个图书管理系统账号
      * 学号
      * true(存在)         为已被注册
@@ -97,7 +91,6 @@ public interface AccountService {
     /**
      * Identification And Password Is Right?
      * Common interface
-     *
      * 登录 用户名和密码 验证
      * 并且获取其权限值
      * -1 不存在
