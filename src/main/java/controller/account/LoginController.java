@@ -1,5 +1,7 @@
 package controller.account;
 
+import Utils.GsonUtils;
+import Utils.ResponseDataMap;
 import controller.controllerEnum.AccountEnum;
 import service.account.AccountService;
 import service.account.AccountServiceImpl;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * # -*- coding:utf-8 -*- #
@@ -21,6 +24,22 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String userName = req.getParameter("userName");
+        String password = req.getParameter("password");
+
+        AccountEnum accountEnum = login(userName,password);
+
+        ResponseDataMap sendData = new ResponseDataMap();
+
+        if (accountEnum == AccountEnum.LOGIN_USER_SUCCESS){
+            sendData.setStatus(accountEnum.ordinal());
+        }
+
+
+        PrintWriter writer = resp.getWriter();
+
+        writer.write(sendData.toJson(GsonUtils.GsonSerializerFeature.WriteNullValue));
+
 
     }
 

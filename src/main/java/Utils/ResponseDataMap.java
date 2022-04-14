@@ -17,6 +17,7 @@ public class ResponseDataMap {
      * status 状态
      * msg    信息
      * data   数据
+     * Extra  额外信息
      */
 
     public ResponseDataMap() {
@@ -25,25 +26,25 @@ public class ResponseDataMap {
 
     public ResponseDataMap(Integer status, String msg, Object data) {
         sendData = new HashMap<>();
-        this.SetStatus(status);
-        this.SetMsg(msg);
-        this.SetData(data);
+        this.setStatus(status);
+        this.setMsg(msg);
+        this.setData(data);
     }
 
-    public void SetStatus(Integer status) {
+    public void setStatus(Integer status) {
         sendData.put("status", status);
     }
 
-    public void SetMsg(String msg) {
+    public void setMsg(String msg) {
         sendData.put("msg", msg);
     }
 
-    public void SetData(Object data) {
+    public void setData(Object data) {
         sendData.put("data", data);
     }
 
-    public void Put(String key, Object data) {
-        sendData.put("data", data);
+    public void put(String key, Object data) {
+        sendData.put(key, data);
     }
 
     public String toJson(){
