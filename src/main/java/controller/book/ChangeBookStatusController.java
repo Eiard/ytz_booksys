@@ -31,7 +31,7 @@ public class ChangeBookStatusController extends HttpServlet {
         resp.setHeader("content-type", "text/html;charset=utf-8");
         PrintWriter out = resp.getWriter();
 
-        Book book = GsonUtils.strToJavaBean(req.getParameter("book"));
+        Book book = GsonUtils.strToJavaBean(req.getParameter("book"),Book.class);
 
         System.out.println(book);
 

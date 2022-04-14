@@ -133,22 +133,21 @@ public class GsonUtils {
      * strToJavaBeanMaps json  ->  Map<String,T>
      * strToJavaBeanListMaps json  ->  List<Map<String,T>>
      */
-    public static <T> T strToJavaBean(String gsonString) {
-        return GSON.fromJson(gsonString, new TypeToken<T>() {
-        }.getType());
+    public static <T> T strToJavaBean(String gsonString, Class<T> cls) {
+        return GSON.fromJson(gsonString, cls);
     }
 
-    public static <T> List<T> strToJavaBeanList(String gsonString) {
-        return GSON.fromJson(gsonString, new TypeToken<List<T>>() {
-        }.getType());
-    }
-
-    public static <T> Map<String, T> strToJavaBeanMaps(String gsonString) {
+    public static <T> List<T> strToJavaBeanList(String gsonString, Class<T> cls) {
         return GSON.fromJson(gsonString, new TypeToken<Map<String, T>>() {
         }.getType());
     }
 
-    public static <T> List<Map<String, T>> strToJavaBeanListMaps(String gsonString) {
+    public static <T> Map<String, T> strToJavaBeanMaps(String gsonString, Class<T> cls) {
+        return GSON.fromJson(gsonString, new TypeToken<Map<String, T>>() {
+        }.getType());
+    }
+
+    public static <T> List<Map<String, T>> strToJavaBeanListMaps(String gsonString, Class<T> cls) {
         return GSON.fromJson(gsonString, new TypeToken<List<Map<String, T>>>() {
         }.getType());
     }
