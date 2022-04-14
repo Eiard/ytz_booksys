@@ -43,15 +43,16 @@ public class LoginController extends HttpServlet {
         sendData.setStatus(accountEnum.ordinal());
         sendData.setMsg(accountEnum.toString());
 
-        if (accountEnum == AccountEnum.LOGIN_USER_SUCCESS) {
-            sendData = dataEncapsulation(sendData,identification,accountEnum);
-        } else if (accountEnum == AccountEnum.LOGIN_ROOT_SUCCESS) {
-            sendData = dataEncapsulation(sendData,identification,accountEnum);
-        } else if (accountEnum == AccountEnum.LOGIN_ACCOUNT_PASSWORD_ERROR) {
-            sendData.setData("");
-        } else if (accountEnum == AccountEnum.UNKNOWN_ERROR) {
-            sendData.setData("");
+        /**
+         * 登录成功需要回发 Account信息
+         */
+        if (accountEnum == AccountEnum.LOGIN_USER_SUCCESS || accountEnum == AccountEnum.LOGIN_ROOT_SUCCESS) {
+            sendData = dataEncapsulation(sendData, identification, accountEnum);
         }
+        /**
+         * 登录失败不需要回发 Account信息
+         * data字段默认为空
+         */
 
         out.write(sendData.toJson());
     }
