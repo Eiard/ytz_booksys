@@ -103,4 +103,15 @@ public interface ReaderTypeService {
      */
     List<ReaderType> fuzzyQueryReaderType(String rdTypeName);
 
+
+    /**
+     * Query One ReaderType
+     * Common interface
+     *
+     * @param rdType
+     * @return ReaderType
+     */
+    ReaderType queryOneReaderType(int rdType);
+
+
 }

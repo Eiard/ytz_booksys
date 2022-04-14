@@ -131,4 +131,22 @@ public class ReaderTypeServiceImpl implements ReaderTypeService {
         return readerTypeList;
     }
 
+    /**
+     * Query One ReaderType
+     * Common interface
+     *
+     * @param rdType
+     * @return ReaderType
+     */
+    @Override
+    public ReaderType queryOneReaderType(int rdType) {
+        List<ReaderType> readerTypes = queryAllReaderType();
+
+        for (ReaderType readerType : readerTypes) {
+            if (rdType == readerType.getRdType()) {
+                return readerType;
+            }
+        }
+        return null;
+    }
 }

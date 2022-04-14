@@ -3,8 +3,15 @@ package controller.account;
 import Utils.GsonUtils;
 import Utils.ResponseDataMap;
 import controller.controllerEnum.AccountEnum;
+import pojo.Account;
+import pojo.Reader;
+import pojo.ReaderType;
 import service.account.AccountService;
 import service.account.AccountServiceImpl;
+import service.reader.ReaderService;
+import service.reader.ReaderServiceImpl;
+import service.readertype.ReaderTypeService;
+import service.readertype.ReaderTypeServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,23 +37,19 @@ public class LoginController extends HttpServlet {
         String identification = req.getParameter("identification");
         String password = req.getParameter("password");
 
-        AccountEnum accountEnum = login(identification,password);
+        AccountEnum accountEnum = login(identification, password);
 
         ResponseDataMap sendData = new ResponseDataMap();
         sendData.setStatus(accountEnum.ordinal());
         sendData.setMsg(accountEnum.toString());
 
-        if (accountEnum == AccountEnum.LOGIN_USER_SUCCESS){
+        if (accountEnum == AccountEnum.LOGIN_USER_SUCCESS) {
+            sendData = dataEncapsulation(sendData,identification,accountEnum);
+        } else if (accountEnum == AccountEnum.LOGIN_ROOT_SUCCESS) {
+            sendData = dataEncapsulation(sendData,identification,accountEnum);
+        } else if (accountEnum == AccountEnum.LOGIN_ACCOUNT_PASSWORD_ERROR) {
             sendData.setData("");
-
-
-        }else if (accountEnum == AccountEnum.LOGIN_ROOT_SUCCESS){
-            sendData.setData("");
-
-
-        }else if (accountEnum == AccountEnum.LOGIN_ACCOUNT_PASSWORD_ERROR){
-            sendData.setData("");
-        }else if (accountEnum == AccountEnum.UNKNOWN_ERROR){
+        } else if (accountEnum == AccountEnum.UNKNOWN_ERROR) {
             sendData.setData("");
         }
 
@@ -80,6 +83,37 @@ public class LoginController extends HttpServlet {
             return AccountEnum.LOGIN_ROOT_SUCCESS;
         }
         return AccountEnum.UNKNOWN_ERROR;
+    }
+
+
+    /**
+     * 回显数据方法封装
+     *
+     * @param sendData
+     * @param accountEnum
+     * @return ResponseDataMap
+     */
+    public ResponseDataMap dataEncapsulation(ResponseDataMap sendData, String identification, AccountEnum accountEnum) {
+        AccountService accountService = new AccountServiceImpl();
+
+        Account account = accountService.queryOneAccount(identification);
+        account.setPassword("");
+        sendData.setData(account);
+
+        if (accountEnum == AccountEnum.LOGIN_ROOT_SUCCESS) {
+            return sendData;
+        } else if (accountEnum == AccountEnum.LOGIN_USER_SUCCESS) {
+            ReaderService readerService = new ReaderServiceImpl();
+            ReaderTypeService readerTypeService = new ReaderTypeServiceImpl();
+
+            Reader reader = readerService.queryOneReader(account.getRdId());
+            sendData.put("reader", reader);
+
+            ReaderType readerType = readerTypeService.queryOneReaderType(reader.getRdType());
+            sendData.put("readerType", readerType);
+        }
+
+        return sendData;
     }
 
 

@@ -105,4 +105,15 @@ public class ReaderServiceImpl implements ReaderService {
         }
         return false;
     }
+
+    @Override
+    public Reader queryOneReader(int rdId) {
+        List<Reader> readers = readerMapper.queryAllReader();
+        for (Reader reader : readers) {
+            if (reader.getRdId() == rdId) {
+                return reader;
+            }
+        }
+        return null;
+    }
 }

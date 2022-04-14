@@ -110,4 +110,15 @@ public interface ReaderService {
      * @return boolean
      */
     boolean queryReaderExist(int rdId,String rdName);
+
+    /**
+     * Query Reader By RdId
+     * Common interface
+     *
+     * 通过学号 找到读者信息
+     *
+     * @param rdId
+     * @return Reader
+     */
+    Reader queryOneReader(int rdId);
 }

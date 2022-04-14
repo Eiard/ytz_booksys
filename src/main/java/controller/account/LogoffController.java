@@ -52,6 +52,11 @@ public class LogoffController extends HttpServlet {
 
         Account account = accountService.queryOneAccount(identification);
 
+        if (account == null){
+            return AccountEnum.LOGOFF_ID_NOT_EXIST_ERROR;
+        }
+
+
         /**
          * 没有未还的书籍(可注销)     LOGOFF_SUCCESS
          * 有未还的书籍(不可注销)     LOGOFF_ERROR

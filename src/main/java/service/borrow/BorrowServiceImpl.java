@@ -29,7 +29,7 @@ public class BorrowServiceImpl implements BorrowService {
      */
     private BookService bookService;
 
-    public BorrowServiceImpl(){
+    public BorrowServiceImpl() {
         borrowMapper = new BorrowMapperImpl();
         bookService = new BookServiceImpl();
     }
@@ -79,7 +79,7 @@ public class BorrowServiceImpl implements BorrowService {
 
         List<Borrow> borrowList = queryAllBorrow();
         for (Borrow borrow : borrowList) {
-            if (rdId == borrow.getRdId() && borrow.getDateLendAct().equals("")) {
+            if (rdId == borrow.getRdId() && ("".equals(borrow.getDateLendAct()) || borrow.getDateLendAct() == null)) {
                 List<Book> bookList = bookService.queryAllBook();
                 for (Book book : bookList) {
                     if (borrow.getBkId() == book.getBkId()) {

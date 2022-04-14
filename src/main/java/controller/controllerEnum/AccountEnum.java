@@ -7,8 +7,8 @@ package controller.controllerEnum;
  */
 public enum AccountEnum {
     /**
-     *     Root
-     *     User
+     *     Root 登陆成功
+     *     User 登陆成功
      *     账号或密码错误
      */
     LOGIN_ROOT_SUCCESS,
@@ -21,6 +21,7 @@ public enum AccountEnum {
      */
     LOGOFF_SUCCESS,
     LOGOFF_ERROR,
+    LOGOFF_ID_NOT_EXIST_ERROR,
 
     /**
      *     注册成功
