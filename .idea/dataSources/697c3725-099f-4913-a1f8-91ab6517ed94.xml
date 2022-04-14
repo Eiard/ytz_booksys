@@ -919,7 +919,7 @@ SELECT|sys.sys_config
       <Starts>&apos;2022-03-24 16:42:07&apos;</Starts>
       <Preserve>1</Preserve>
       <Status>enabled</Status>
-      <LastExecuted>2022-04-15.01:07:07</LastExecuted>
+      <LastExecuted>2022-04-15.05:16:07</LastExecuted>
     </scheduled-event>
     <column id="289" parent="283" name="identification">
       <Position>1</Position>
@@ -982,9 +982,9 @@ SELECT|sys.sys_config
       <DataType>tinyint(1)|0s</DataType>
       <DefaultExpression>1</DefaultExpression>
     </column>
-    <column id="303" parent="284" name="bkImage">
+    <column id="303" parent="284" name="bkImageUrl">
       <Position>8</Position>
-      <DataType>blob|0s</DataType>
+      <DataType>varchar(30)|0s</DataType>
     </column>
     <key id="304" parent="284" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>

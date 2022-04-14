@@ -27,7 +27,7 @@ public class BookMapperImpl implements BookMapper {
         String sql =
                 "INSERT INTO book " +
                 "(bkName,bkAuthor,bkPress," +
-                "bkPrice,bkNum,bkState,bkImage) " +
+                "bkPrice,bkNum,bkState,bkImageUrl) " +
                 "VALUES (?,?,?,?,?,?,?)";
 
         return Sql.update(sql,
@@ -37,7 +37,7 @@ public class BookMapperImpl implements BookMapper {
                 book.getBkPrice(),
                 book.getBkNum(),
                 book.getBkState(),
-                book.getBkImage());
+                book.getBkImageUrl());
     }
 
     @Override
@@ -47,7 +47,7 @@ public class BookMapperImpl implements BookMapper {
                 "bkName = ?,bkAuthor = ?," +
                 "bkPress = ?,bkPrice = ?," +
                 "bkNum = ?,bkState = ? ," +
-                "bkImage = ? WHERE bkId = ?";
+                "bkImageUrl = ? WHERE bkId = ?";
 
         return Sql.update(sql,
                 book.getBkName(),
@@ -56,7 +56,7 @@ public class BookMapperImpl implements BookMapper {
                 book.getBkPrice(),
                 book.getBkNum(),
                 book.getBkState(),
-                book.getBkImage(),
+                book.getBkImageUrl(),
                 book.getBkId());
     }
 

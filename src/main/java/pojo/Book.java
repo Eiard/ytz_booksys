@@ -23,5 +23,5 @@ public class Book {
     private double bkPrice;
     private int bkNum;
     private byte bkState;
-    private byte[] bkImage;
+    private String bkImageUrl;
 }

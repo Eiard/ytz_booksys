@@ -1,4 +1,6 @@
 import controller.controllerEnum.AccountEnum;
+import dao.book.BookMapper;
+import dao.book.BookMapperImpl;
 import org.junit.Test;
 
 /**
@@ -10,8 +12,10 @@ public class ad12 {
 
     @Test
     public void asd12(){
+        BookMapper bookMapper = new BookMapperImpl();
 
-        System.out.println(AccountEnum.LOGIN_ACCOUNT_PASSWORD_ERROR.toString());
-    }
+        System.out.println(bookMapper.queryAllBook());
+
+   }
 
 }
