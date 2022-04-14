@@ -8,5 +8,14 @@ package controller.controllerEnum;
 public enum BookEnum {
 
 
+    /**
+     * 改变书籍的状态
+     */
+    CHANGE_BOOK_STATUS_SUCCESS,
 
+
+    /**
+     * 未知错误
+     */
+    UNKNOWN_ERROR,
 }

@@ -1,7 +1,9 @@
+import Utils.GsonUtils;
 import controller.controllerEnum.AccountEnum;
 import dao.book.BookMapper;
 import dao.book.BookMapperImpl;
 import org.junit.Test;
+import pojo.Book;
 
 /**
  * # -*- coding:utf-8 -*- #
@@ -12,9 +14,17 @@ public class ad12 {
 
     @Test
     public void asd12(){
-        BookMapper bookMapper = new BookMapperImpl();
+        Book book = new Book();
+        book.setBkState((byte) 1);
+        book.setBkAuthor("1");
+        book.setBkNum(10);
+        book.setBkImageUrl("!23");
+        book.setBkName("123");
+        book.setBkPrice(12.1);
 
-        System.out.println(bookMapper.queryAllBook());
+
+
+        System.out.println(GsonUtils.objectToJsonString(book,GsonUtils.GsonSerializerFeature.WriteNullValue));
 
    }
 
