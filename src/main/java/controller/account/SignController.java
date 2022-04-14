@@ -31,9 +31,19 @@ public class SignController extends HttpServlet {
         resp.setHeader("content-type", "text/html;charset=utf-8");
         PrintWriter out = resp.getWriter();
 
+        String identification = req.getParameter("identification");
+        String password = req.getParameter("password");
+        String QQ = req.getParameter("QQ");
+        int rdId = Integer.parseInt(req.getParameter("rdId"));
+        String rdName = req.getParameter("rdName");
 
         Account account = new Account();
-        AccountEnum accountEnum  = sign(account,"123");
+        account.setIdentification(identification);
+        account.setPassword(password);
+        account.setQQ(QQ);
+        account.setRdId(rdId);
+
+        AccountEnum accountEnum  = sign(account,rdName);
 
         ResponseDataMap sendData = new ResponseDataMap();
         sendData.setStatus(accountEnum.ordinal());
@@ -73,7 +83,7 @@ public class SignController extends HttpServlet {
             return AccountEnum.SIGN_RDID_MATCH_RDNAME_ERROR;
         }
 
-        if (accountService.addAccount(account) == 0) {
+        if (accountService.addAccount(account) == 1) {
             return AccountEnum.SIGN_SUCCESS;
         }
 
