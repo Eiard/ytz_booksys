@@ -21,7 +21,7 @@ public class BookServiceImpl implements BookService {
      */
     private BookMapper bookMapper;
 
-    public BookServiceImpl(){
+    public BookServiceImpl() {
         bookMapper = new BookMapperImpl();
     }
 
@@ -32,7 +32,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public int addBooks(List<Book> Books) {
-        if (Books == null){
+        if (Books == null) {
             return 0;
         }
         for (Book book : Books) {
@@ -48,13 +48,23 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public int updateBooks(List<Book> Books) {
-        if (Books == null){
+        if (Books == null) {
             return 0;
         }
         for (Book book : Books) {
             updateBook(book);
         }
         return 1;
+    }
+
+    @Override
+    public int changeBookStatus(int bkId) {
+        Book book = queryOneBookByBkId(bkId);
+        if (book == null) {
+            return 2;
+        }
+        book.setBkState((byte) ((book.getBkState() + 1) % 2));
+        return updateBook(book);
     }
 
     @Override
@@ -74,5 +84,15 @@ public class BookServiceImpl implements BookService {
             }
         }
         return bookList;
+    }
+
+    @Override
+    public Book queryOneBookByBkId(int bkId) {
+        List<Book> books = queryAllBook();
+        for (Book book : books) {
+            if (book.getBkId() == bkId)
+                return book;
+        }
+        return null;
     }
 }

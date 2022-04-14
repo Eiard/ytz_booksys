@@ -14,7 +14,6 @@ public interface BookService {
     /**
      * Add Book
      * Root interface
-     *
      * 添加一本书
      *
      * @param book
@@ -25,7 +24,6 @@ public interface BookService {
     /**
      * Add Books
      * Root interface
-     *
      * 添加多本书
      *
      * @param Books
@@ -36,7 +34,6 @@ public interface BookService {
     /**
      * Update Book
      * Root interface
-     *
      * 修改一本书
      *
      * @param book
@@ -47,7 +44,6 @@ public interface BookService {
     /**
      * Update Books
      * Root interface
-     *
      * 修改多本书
      *
      * @param Books
@@ -56,9 +52,18 @@ public interface BookService {
     int updateBooks(List<Book> Books);
 
     /**
+     * Update Books Status
+     * Root interface
+     * 更改书的状态
+     *
+     * @param bkId
+     * @return int
+     */
+    int changeBookStatus(int bkId);
+
+    /**
      * Query All Book
      * Common interface
-     *
      * 查询所有书
      *
      * @return List<Book>
@@ -67,7 +72,6 @@ public interface BookService {
 
     /**
      * Fuzzy Query By bkName And Author And BkPress
-     *
      * 模糊查询 书名 作者 出版社
      *
      * @param bkName
@@ -75,6 +79,15 @@ public interface BookService {
      * @param bkPress
      * @return List<Book>
      */
-    List<Book> fuzzyQueryAllBook(String bkName, String bkAuthor,String bkPress);
+    List<Book> fuzzyQueryAllBook(String bkName, String bkAuthor, String bkPress);
 
+
+    /**
+     * Query Book By bkId
+     * 通过Id找到Book的信息
+     *
+     * @param bkId
+     * @return
+     */
+    Book queryOneBookByBkId(int bkId);
 }
