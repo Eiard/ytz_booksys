@@ -4,6 +4,8 @@ import dao.book.BookMapper;
 import dao.book.BookMapperImpl;
 import org.junit.Test;
 import pojo.Book;
+import service.book.BookService;
+import service.book.BookServiceImpl;
 
 /**
  * # -*- coding:utf-8 -*- #
@@ -13,19 +15,10 @@ import pojo.Book;
 public class ad12 {
 
     @Test
-    public void asd12(){
-        Book book = new Book();
-        book.setBkState((byte) 1);
-        book.setBkAuthor("1");
-        book.setBkNum(10);
-        book.setBkImageUrl("!23");
-        book.setBkName("123");
-        book.setBkPrice(12.1);
+    public void asd12() {
+        BookService bookService = new BookServiceImpl();
 
-
-
-        System.out.println(GsonUtils.objectToJsonString(book,GsonUtils.GsonSerializerFeature.WriteNullValue));
-
-   }
+        System.out.println(bookService.fuzzyQueryAllBook("", "", ""));
+    }
 
 }
