@@ -27,27 +27,30 @@ public class LoginController extends HttpServlet {
         resp.setHeader("content-type", "text/html;charset=utf-8");
         PrintWriter out = resp.getWriter();
 
-        String userName = req.getParameter("userName");
+        String identification = req.getParameter("identification");
         String password = req.getParameter("password");
 
-        AccountEnum accountEnum = login(userName,password);
+        AccountEnum accountEnum = login(identification,password);
 
         ResponseDataMap sendData = new ResponseDataMap();
+        sendData.setStatus(accountEnum.ordinal());
+        sendData.setMsg(accountEnum.toString());
 
         if (accountEnum == AccountEnum.LOGIN_USER_SUCCESS){
-            sendData.setStatus(accountEnum.ordinal());
-            sendData.setMsg(accountEnum.toString());
             sendData.setData("");
+
+
         }else if (accountEnum == AccountEnum.LOGIN_ROOT_SUCCESS){
-            sendData.setStatus(accountEnum.ordinal());
-            sendData.setMsg(accountEnum.toString());
+            sendData.setData("");
+
+
+        }else if (accountEnum == AccountEnum.LOGIN_ACCOUNT_PASSWORD_ERROR){
+            sendData.setData("");
+        }else if (accountEnum == AccountEnum.UNKNOWN_ERROR){
             sendData.setData("");
         }
 
-        /*
-          字节流输出(json格式)
-         */
-        out.write(sendData.toJson(GsonUtils.GsonSerializerFeature.WriteNullValue));
+        out.write(sendData.toJson());
     }
 
     /**

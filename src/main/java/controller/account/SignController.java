@@ -1,5 +1,6 @@
 package controller.account;
 
+import Utils.ResponseDataMap;
 import controller.controllerEnum.AccountEnum;
 import pojo.Account;
 import service.account.AccountService;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * # -*- coding:utf-8 -*- #
@@ -26,8 +28,18 @@ public class SignController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setHeader("content-type", "text/html;charset=utf-8");
+        PrintWriter out = resp.getWriter();
 
 
+        Account account = new Account();
+        AccountEnum accountEnum  = sign(account,"123");
+
+        ResponseDataMap sendData = new ResponseDataMap();
+        sendData.setStatus(accountEnum.ordinal());
+        sendData.setMsg(accountEnum.toString());
+
+        out.write(sendData.toJson());
     }
 
     /**

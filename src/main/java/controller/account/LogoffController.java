@@ -1,5 +1,6 @@
 package controller.account;
 
+import Utils.ResponseDataMap;
 import controller.controllerEnum.AccountEnum;
 import pojo.Account;
 import service.account.AccountService;
@@ -27,6 +28,15 @@ public class LogoffController extends HttpServlet {
         resp.setHeader("content-type", "text/html;charset=utf-8");
         PrintWriter out = resp.getWriter();
 
+        String identification = req.getParameter("identification");
+
+        AccountEnum accountEnum = logOff(identification);
+
+        ResponseDataMap sendData = new ResponseDataMap();
+        sendData.setStatus(accountEnum.ordinal());
+        sendData.setMsg(accountEnum.toString());
+
+        out.write(sendData.toJson());
     }
 
     /**

@@ -22,6 +22,7 @@ public class ResponseDataMap {
 
     public ResponseDataMap() {
         sendData = new HashMap<>();
+        this.setData("");
     }
 
     public ResponseDataMap(Integer status, String msg, Object data) {
@@ -47,17 +48,11 @@ public class ResponseDataMap {
         sendData.put(key, data);
     }
 
-    public String toJson(){
+    public String toJson() {
         return GsonUtils.mapToJsonString(sendData, GsonUtils.GsonSerializerFeature.WriteNullValue);
     }
 
-    public String toJson(GsonUtils.GsonSerializerFeature Setting){
+    public String toJson(GsonUtils.GsonSerializerFeature Setting) {
         return GsonUtils.mapToJsonString(sendData, Setting);
     }
-
-    @Override
-    public String toString() {
-        return GsonUtils.mapToJsonString(sendData, GsonUtils.GsonSerializerFeature.WriteNullValue);
-    }
-
 }
