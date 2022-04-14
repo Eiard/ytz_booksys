@@ -34,14 +34,6 @@ public class ChangeBookStatusController extends HttpServlet {
         sendData.setStatus(bookEnum.ordinal());
         sendData.setMsg(bookEnum.toString());
 
-        if (bookEnum == BookEnum.CHANGE_BOOK_STATUS_SUCCESS) {
-            sendData.setData("");
-        } else if (bookEnum == BookEnum.CHANGE_BOOK_BKID_NOT_EXIST_ERROR) {
-            sendData.setData("");
-        } else if (bookEnum == BookEnum.UNKNOWN_ERROR) {
-            sendData.setData("");
-        }
-
         out.write(sendData.toJson());
     }
 

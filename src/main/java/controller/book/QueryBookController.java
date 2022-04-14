@@ -34,9 +34,17 @@ public class QueryBookController extends HttpServlet {
 
         List<Book> books = queryBookList(bkName, bkAuthor, bkPress);
 
+
+        BookEnum bookEnum;
+        if (books.size() == 0) {
+            bookEnum = BookEnum.QUERY_NO_BOOK_ERROR;
+        } else {
+            bookEnum = BookEnum.QUERY_SUCCESS;
+        }
+
         ResponseDataMap sendData = new ResponseDataMap();
-        sendData.setStatus(BookEnum.QUERY_SUCCESS.ordinal());
-        sendData.setMsg(BookEnum.QUERY_SUCCESS.toString());
+        sendData.setStatus(bookEnum.ordinal());
+        sendData.setMsg(bookEnum.toString());
         sendData.setData(books);
 
         out.write(sendData.toJson());

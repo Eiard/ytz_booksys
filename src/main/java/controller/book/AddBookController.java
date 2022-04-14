@@ -48,14 +48,6 @@ public class AddBookController extends HttpServlet {
         sendData.setStatus(bookEnum.ordinal());
         sendData.setMsg(bookEnum.toString());
 
-        if (bookEnum == BookEnum.ADD_BOOK_SUCCESS) {
-            sendData.setData("");
-        } else if (bookEnum == BookEnum.ADD_SAME_BOOK_ERROR) {
-            sendData.setData("");
-        } else if (bookEnum == BookEnum.UNKNOWN_ERROR) {
-            sendData.setData("");
-        }
-
         out.write(sendData.toJson());
     }
 
