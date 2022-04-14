@@ -56,6 +56,7 @@ public class AddBookController extends HttpServlet {
             sendData.setData("");
         }
 
+        out.write(sendData.toJson());
     }
 
 
@@ -66,8 +67,6 @@ public class AddBookController extends HttpServlet {
             List<Book> books = bookService.fuzzyQueryAllBook(book.getBkName(), book.getBkAuthor(), book.getBkPress());
 
             int bkId = books.get(0).getBkId();
-
-
             /**
              * 处理图片
              */
