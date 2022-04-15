@@ -34,6 +34,11 @@ public class LoginController extends HttpServlet {
         resp.setHeader("content-type", "text/html;charset=utf-8");
         PrintWriter out = resp.getWriter();
 
+        /**
+         * 获取
+         *      用户名
+         *      密码
+         */
         String identification = req.getParameter("identification");
         String password = req.getParameter("password");
 
