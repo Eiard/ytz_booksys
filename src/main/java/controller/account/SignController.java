@@ -31,6 +31,11 @@ public class SignController extends HttpServlet {
         resp.setHeader("content-type", "text/html;charset=utf-8");
         PrintWriter out = resp.getWriter();
 
+        /**
+         * 获取
+         *      用户名
+         *      密码
+         */
         String identification = req.getParameter("identification");
         String password = req.getParameter("password");
         String QQ = req.getParameter("QQ");
@@ -43,8 +48,15 @@ public class SignController extends HttpServlet {
         account.setQQ(QQ);
         account.setRdId(rdId);
 
+        /**
+         * 执行操作
+         * 返回状态码
+         */
         AccountEnum accountEnum  = sign(account,rdName);
 
+        /**
+         * 回复数据封装
+         */
         ResponseDataMap sendData = new ResponseDataMap();
         sendData.setStatus(accountEnum.ordinal());
         sendData.setMsg(accountEnum.toString());

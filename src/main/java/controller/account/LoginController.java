@@ -42,8 +42,15 @@ public class LoginController extends HttpServlet {
         String identification = req.getParameter("identification");
         String password = req.getParameter("password");
 
+        /**
+         * 执行操作
+         * 返回状态码
+         */
         AccountEnum accountEnum = login(identification, password);
 
+        /**
+         * 回复数据封装
+         */
         ResponseDataMap sendData = new ResponseDataMap();
         sendData.setStatus(accountEnum.ordinal());
         sendData.setMsg(accountEnum.toString());

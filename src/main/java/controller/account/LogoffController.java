@@ -28,10 +28,20 @@ public class LogoffController extends HttpServlet {
         resp.setHeader("content-type", "text/html;charset=utf-8");
         PrintWriter out = resp.getWriter();
 
+        /**
+         * 注销 只需要传递自己的用户名即可
+         */
         String identification = req.getParameter("identification");
 
+        /**
+         * 执行操作
+         * 返回状态码
+         */
         AccountEnum accountEnum = logOff(identification);
 
+        /**
+         * 回复数据封装
+         */
         ResponseDataMap sendData = new ResponseDataMap();
         sendData.setStatus(accountEnum.ordinal());
         sendData.setMsg(accountEnum.toString());
