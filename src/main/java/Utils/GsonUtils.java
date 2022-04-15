@@ -152,6 +152,9 @@ public class GsonUtils {
         }.getType());
     }
 
+    public static <T> T objectToJavaBean(Object object, Class<T> cls) {
+        return strToJavaBean(object.toString(), cls);
+    }
 
 
 }
