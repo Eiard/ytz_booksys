@@ -92,6 +92,7 @@ public class BorrowServiceImpl implements BorrowService {
         SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dataLendAct = SimpleDateFormat.format(Calendar.getInstance().getTime());
 
+        System.out.println(dataLendAct);
 
         for (Borrow borrow : Borrows) {
             borrow.setDateLendAct(dataLendAct);

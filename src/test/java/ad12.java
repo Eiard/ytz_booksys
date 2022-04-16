@@ -22,8 +22,16 @@ public class ad12 {
 
     @Test
     public void asd12() {
-        Map<String,Object> map = new HashMap<>();
 
+        List<Borrow> borrows=  new ArrayList<>();
+
+        Borrow borrow = new Borrow();
+        borrow.setBkId(1);
+        borrow.setRdId(2);
+        borrow.setDateBorrow("2022-04-16 21:51:49");
+
+        borrows.add(borrow);
+        System.out.println(FastJsonUtils.listToJsonString(borrows));
 
 
     }
