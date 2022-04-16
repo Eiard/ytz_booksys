@@ -56,7 +56,6 @@ public class BorrowServiceImpl implements BorrowService {
 
         for (Borrow borrow : borrows) {
 
-
             for (Book book : books) {
                 if (book.getBkId() == borrow.getRdId()) {
                     /**
