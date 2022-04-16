@@ -43,6 +43,8 @@ public class BorrowServiceImpl implements BorrowService {
         Collections.fill(booleans, false);
         int index = 0;
         for (Borrow borrow : borrows) {
+
+
             booleans.set(index, lendBorrow(borrow));
             index++;
         }

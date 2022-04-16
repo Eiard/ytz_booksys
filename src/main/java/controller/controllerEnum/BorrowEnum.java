@@ -1,7 +1,12 @@
 package controller.controllerEnum;
 
 public enum BorrowEnum {
-
+    /**
+     * 借书成功
+     */
+    LEND_SUCCESS,
+    LEND_FORMAT_ERROR,
+    LEND_,
 
     /**
      * 查询成功

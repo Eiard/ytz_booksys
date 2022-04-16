@@ -1,9 +1,9 @@
 package controller.borrow;
 
-import pojo.Book;
+import Utils.GsonUtils;
+import Utils.ResponseDataMap;
+import controller.controllerEnum.BorrowEnum;
 import pojo.Borrow;
-import service.book.BookService;
-import service.book.BookServiceImpl;
 import service.borrow.BorrowService;
 import service.borrow.BorrowServiceImpl;
 
@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 /**
@@ -24,13 +25,39 @@ import java.util.List;
 public class LendBookController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setHeader("content-type", "text/html;charset=utf-8");
+        PrintWriter out = resp.getWriter();
 
+        List<Borrow> borrows = null;
+        BorrowEnum borrowEnum = BorrowEnum.UNKNOWN_ERROR;
+        ResponseDataMap sendData = new ResponseDataMap();
+        try {
+            borrows = GsonUtils.strToJavaBeanList(req.getParameter("borrows"));
+        } catch (Exception e) {
+            borrowEnum = BorrowEnum.LEND_FORMAT_ERROR;
+            sendData.setStatus(borrowEnum.ordinal());
+            sendData.setMsg(borrowEnum.toString());
+            out.write(sendData.toJson());
+            return;
+        }
+
+        List<Boolean> booleans = booleans = LendBooks(borrows);
+        if (booleans.size() > 0) {
+            borrowEnum = BorrowEnum.LEND_SUCCESS;
+        }
+
+        /**
+         * 回复数据封装
+         */
+        sendData.setStatus(borrowEnum.ordinal());
+        sendData.setMsg(borrowEnum.toString());
+        sendData.setData(booleans);
+
+        out.write(sendData.toJson());
     }
 
     public List<Boolean> LendBooks(List<Borrow> borrows) {
-
         BorrowService borrowService = new BorrowServiceImpl();
-
         return borrowService.lendBorrows(borrows);
     }
 
