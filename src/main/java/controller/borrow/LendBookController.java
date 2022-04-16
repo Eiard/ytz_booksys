@@ -1,7 +1,8 @@
 package controller.borrow;
 
-import Utils.GsonUtils;
+import Utils.FastJsonUtils;
 import Utils.ResponseDataMap;
+import com.alibaba.fastjson.TypeReference;
 import controller.controllerEnum.BorrowEnum;
 import pojo.Borrow;
 import service.borrow.BorrowService;
@@ -32,7 +33,8 @@ public class LendBookController extends HttpServlet {
         BorrowEnum borrowEnum = BorrowEnum.LEND_SUCCESS;
         ResponseDataMap sendData = new ResponseDataMap();
         try {
-            borrows = GsonUtils.strToJavaBeanList(req.getParameter("borrows"));
+            borrows = FastJsonUtils.strToJavaBeanList(req.getParameter("borrows"), new TypeReference<List<Borrow>>() {
+            });
         } catch (Exception e) {
             borrowEnum = BorrowEnum.LEND_FORMAT_ERROR;
             sendData.setStatus(borrowEnum.ordinal());

@@ -10,6 +10,7 @@ public enum BorrowEnum {
 
     /**
      * 还书成功
+     * 还书接收json格式错误
      */
     RETURN_SUCCESS,
     RETURN_FORMAT_ERROR,
