@@ -41,7 +41,7 @@ public class BorrowMapperImpl implements BorrowMapper {
         String sql =
                 "UPDATE borrow SET " +
                         "dateLendAct = ?" +
-                        "WHERE rdId = ? AND bkId = ? AND dateBorrow = ?";
+                        "WHERE rdId = ? AND bkId = ? AND dateBorrow = ? AND dateLendAct IS NULL";
 
         return Sql.update(sql,
                 borrow.getDateLendAct(),
