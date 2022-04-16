@@ -17,14 +17,14 @@ drop table if exists ReaderType;
 /*==============================================================*/
 create table Book
 (
-    bkId     int not null auto_increment, # Id
-    bkName   varchar(30),                 # 书名
-    bkAuthor varchar(30),                 # 作者
-    bkPress  varchar(30),                 # 出版社
-    bkPrice  decimal(5, 2),               # 价格
-    bkNum    int,                         # 数量
-    bkState  boolean default 1,           # 状态 默认可借
-    bkImageUrl  varchar(30),                 # 图片
+    bkId       int not null auto_increment, # Id
+    bkName     varchar(30),                 # 书名
+    bkAuthor   varchar(30),                 # 作者
+    bkPress    varchar(30),                 # 出版社
+    bkPrice    decimal(5, 2),               # 价格
+    bkNum      int,                         # 数量
+    bkState    boolean default 1,           # 状态 默认可借
+    bkImageUrl varchar(30) default '',      # 图片
     CHECK (
         bkNum >= 0
         ),
@@ -64,7 +64,7 @@ create table Reader
 create table ReaderType
 (
     rdType     int not null auto_increment, # 读者类别Id
-    rdTypeName varchar(20) unique ,         # 读者类别名
+    rdTypeName varchar(20) unique,          # 读者类别名
     canLendQty int,                         # 可借数量
     canLendDay int,                         # 可借天数(Day)
     primary key (rdType)
@@ -72,11 +72,11 @@ create table ReaderType
 
 create table Account
 (
-    identification varchar(20) unique, # 账号(注册时自定义)
-    password       varchar(20),        # 密码(自定义) 后面也可更改
-    root           boolean default 0,  # 权限 1(管理员)  权限 0(用户)
-    QQ             varchar(13) default '',        # QQ
-    rdId           int                 # 绑定学号
+    identification varchar(20) unique,     # 账号(注册时自定义)
+    password       varchar(20),            # 密码(自定义) 后面也可更改
+    root           boolean     default 0,  # 权限 1(管理员)  权限 0(用户)
+    QQ             varchar(13) default '', # QQ
+    rdId           int                     # 绑定学号
 );
 
 # 判断是否逾期
