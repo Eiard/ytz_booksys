@@ -29,7 +29,7 @@ public class LendBookController extends HttpServlet {
         PrintWriter out = resp.getWriter();
 
         List<Borrow> borrows = null;
-        BorrowEnum borrowEnum = BorrowEnum.UNKNOWN_ERROR;
+        BorrowEnum borrowEnum = BorrowEnum.LEND_SUCCESS;
         ResponseDataMap sendData = new ResponseDataMap();
         try {
             borrows = GsonUtils.strToJavaBeanList(req.getParameter("borrows"));
@@ -41,10 +41,7 @@ public class LendBookController extends HttpServlet {
             return;
         }
 
-        List<Boolean> booleans = booleans = LendBooks(borrows);
-        if (booleans.size() > 0) {
-            borrowEnum = BorrowEnum.LEND_SUCCESS;
-        }
+        List<Boolean> booleans = LendBooks(borrows);
 
         /**
          * 回复数据封装

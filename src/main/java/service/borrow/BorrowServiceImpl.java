@@ -42,10 +42,23 @@ public class BorrowServiceImpl implements BorrowService {
         List<Boolean> booleans = new ArrayList<>();
         Collections.fill(booleans, false);
         int index = 0;
+
+        /**
+         * 这些书说明还没还
+         */
+        List<Book> books = noReturnBook(borrows.get(0).getRdId());
+
+
         for (Borrow borrow : borrows) {
-
-
-            booleans.set(index, lendBorrow(borrow));
+            for (Book book : books){
+                if(book.getBkId() == borrow.getRdId()){
+                    /**
+                     * 未还的书 又继续借阅 (默认FALSE)
+                     */
+                }else{
+                    booleans.set(index, lendBorrow(borrow));
+                }
+            }
             index++;
         }
         return booleans;
