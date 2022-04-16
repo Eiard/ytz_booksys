@@ -31,7 +31,7 @@ public class LogoffController extends HttpServlet {
         /**
          * 注销 只需要传递自己的用户名即可
          */
-        String identification =  new String(req.getParameter("identification").getBytes("ISO-8859-1"),"UTF-8");
+        String identification = req.getParameter("identification");
 
         /**
          * 执行操作

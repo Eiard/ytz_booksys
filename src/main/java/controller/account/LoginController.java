@@ -38,7 +38,7 @@ public class LoginController extends HttpServlet {
          *      用户名
          *      密码
          */
-        String identification = new String(req.getParameter("identification").getBytes("ISO-8859-1"),"UTF-8");
+        String identification = req.getParameter("identification");
         String password = req.getParameter("password");
 
         /**
