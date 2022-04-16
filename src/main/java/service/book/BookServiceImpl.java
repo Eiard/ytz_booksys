@@ -89,6 +89,20 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<Book> fuzzyQueryAllBook(String bkInfo) {
+        List<Book> bookList = new ArrayList<>();
+        List<Book> books = queryAllBook();
+        for (Book book : books) {
+            if (book.getBkName().contains(bkInfo) ||
+                    book.getBkAuthor().contains(bkInfo) ||
+                    book.getBkPress().contains(bkInfo)) {
+                bookList.add(book);
+            }
+        }
+        return bookList;
+    }
+
+    @Override
     public Book queryOneBookByBkId(int bkId) {
         List<Book> books = queryAllBook();
         for (Book book : books) {

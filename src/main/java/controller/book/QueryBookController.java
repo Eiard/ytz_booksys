@@ -28,11 +28,9 @@ public class QueryBookController extends HttpServlet {
         resp.setHeader("content-type", "text/html;charset=utf-8");
         PrintWriter out = resp.getWriter();
 
-        String bkName = req.getParameter("bkName");
-        String bkAuthor = req.getParameter("bkAuthor");
-        String bkPress = req.getParameter("bkPress");
+        String bkInfo = req.getParameter("bkInfo");
 
-        List<Book> books = queryBookList(bkName, bkAuthor, bkPress);
+        List<Book> books = queryBookList(bkInfo);
 
 
         BookEnum bookEnum;
@@ -53,10 +51,10 @@ public class QueryBookController extends HttpServlet {
         out.write(sendData.toJson());
     }
 
-    public List<Book> queryBookList(String bkName, String bkAuthor, String bkPress) {
+    public List<Book> queryBookList(String bkInfo) {
         BookService bookService = new BookServiceImpl();
 
-        return bookService.fuzzyQueryAllBook(bkName, bkAuthor, bkPress);
+        return bookService.fuzzyQueryAllBook(bkInfo);
     }
 
 }

@@ -72,7 +72,7 @@ public interface BookService {
 
     /**
      * Fuzzy Query By bkName And Author And BkPress
-     * 模糊查询 书名 作者 出版社
+     * 模糊查询 书名 作者 出版社 三者分开查询
      *
      * @param bkName
      * @param bkAuthor
@@ -80,6 +80,15 @@ public interface BookService {
      * @return List<Book>
      */
     List<Book> fuzzyQueryAllBook(String bkName, String bkAuthor, String bkPress);
+
+    /**
+     * Fuzzy Query By bkName And Author And BkPress
+     * 模糊查询 书名 作者 出版社 (三者组合查询)
+     *
+     * @param bkInfo
+     * @return List<Book>
+     */
+    List<Book> fuzzyQueryAllBook(String bkInfo);
 
 
     /**
