@@ -43,7 +43,12 @@ public class SignController extends HttpServlet {
         String password = req.getParameter("password");
         String QQ = req.getParameter("QQ");
         int rdId = Integer.parseInt(req.getParameter("rdId"));
-        String rdName = req.getParameter("rdName");
+
+        /**
+         * 安卓端在测试时 没用json编码 直接传递汉语会导致编码问题 (该Controller仅对User 开放接口)
+         */
+        String rdName = new String(req.getParameter("rdName").getBytes("ISO-8859-1"), "UTF-8");
+
 
         Account account = new Account();
         account.setIdentification(identification);
