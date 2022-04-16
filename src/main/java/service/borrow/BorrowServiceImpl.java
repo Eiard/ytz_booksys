@@ -48,14 +48,17 @@ public class BorrowServiceImpl implements BorrowService {
          */
         List<Book> books = noReturnBook(borrows.get(0).getRdId());
 
-
         for (Borrow borrow : borrows) {
-            for (Book book : books){
-                if(book.getBkId() == borrow.getRdId()){
+            for (Book book : books) {
+                if (book.getBkId() == borrow.getRdId()) {
                     /**
-                     * 未还的书 又继续借阅 (默认FALSE)
+                     * 未还的书
+                     * 又继续借阅 (默认FALSE)
+                     * 直接break 说明这个borrow记录的书 该读者已经借阅过
+                     * 去执行下一条借阅记录
                      */
-                }else{
+                    break;
+                } else {
                     booleans.set(index, lendBorrow(borrow));
                 }
             }

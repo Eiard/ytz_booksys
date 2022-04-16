@@ -3,10 +3,16 @@ package controller.controllerEnum;
 public enum BorrowEnum {
     /**
      * 借书成功
+     * 传来的json格式解析出错
      */
     LEND_SUCCESS,
     LEND_FORMAT_ERROR,
-    LEND_,
+
+    /**
+     * 还书成功
+     */
+    RETURN_SUCCESS,
+    RETURN_FORMAT_ERROR,
 
     /**
      * 查询成功
