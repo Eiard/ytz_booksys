@@ -30,6 +30,9 @@ public class ChangeBookStatusController extends HttpServlet {
 
         BookEnum bookEnum = ChangeBookStatus(bkId);
 
+        /**
+         * 回复数据封装
+         */
         ResponseDataMap sendData = new ResponseDataMap();
         sendData.setStatus(bookEnum.ordinal());
         sendData.setMsg(bookEnum.toString());

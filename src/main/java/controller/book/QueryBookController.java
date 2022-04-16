@@ -42,6 +42,9 @@ public class QueryBookController extends HttpServlet {
             bookEnum = BookEnum.QUERY_SUCCESS;
         }
 
+        /**
+         * 回复数据封装
+         */
         ResponseDataMap sendData = new ResponseDataMap();
         sendData.setStatus(bookEnum.ordinal());
         sendData.setMsg(bookEnum.toString());

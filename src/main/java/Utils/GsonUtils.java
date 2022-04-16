@@ -138,7 +138,7 @@ public class GsonUtils {
     }
 
     public static <T> List<T> strToJavaBeanList(String gsonString) {
-        return GSON.fromJson(gsonString, new TypeToken<Map<String, T>>() {
+        return GSON.fromJson(gsonString, new TypeToken<List<T>>() {
         }.getType());
     }
 
