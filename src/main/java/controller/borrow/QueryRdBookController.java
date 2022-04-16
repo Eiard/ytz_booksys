@@ -58,6 +58,4 @@ public class QueryRdBookController extends HttpServlet {
         BorrowService borrowService = new BorrowServiceImpl();
         return borrowService.noReturnBook(rdId);
     }
-
-
 }
