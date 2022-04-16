@@ -39,11 +39,11 @@ public class SignController extends HttpServlet {
          *      学号
          *      姓名
          */
-        String identification = req.getParameter("identification");
+        String identification =  new String(req.getParameter("identification").getBytes("ISO-8859-1"),"UTF-8");
         String password = req.getParameter("password");
         String QQ = req.getParameter("QQ");
         int rdId = Integer.parseInt(req.getParameter("rdId"));
-        String rdName = req.getParameter("rdName");
+        String rdName =  new String(req.getParameter("rdName").getBytes("ISO-8859-1"),"UTF-8");
 
         Account account = new Account();
         account.setIdentification(identification);

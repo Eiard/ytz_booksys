@@ -85,10 +85,9 @@ public class BorrowServiceImpl implements BorrowService {
     @Override
     public List<Boolean> returnBorrows(List<Borrow> Borrows) {
         List<Boolean> booleans = new ArrayList<>();
-        Collections.fill(booleans, false);
-        int index = 0;
+
         for (Borrow borrow : Borrows) {
-            booleans.set(index, returnBorrow(borrow));
+            booleans.add(returnBorrow(borrow));
         }
         return booleans;
     }
