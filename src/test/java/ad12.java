@@ -25,6 +25,9 @@ public class ad12 {
 
     @Test
     public void asd12() {
+        String s = new String("谭虎");
+        System.out.println(FastJsonUtils.objectToJsonString(s));
+
 
         List<Borrow> borrows = new ArrayList<>();
 
