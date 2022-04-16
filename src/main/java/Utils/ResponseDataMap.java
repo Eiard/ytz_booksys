@@ -48,10 +48,6 @@ public class ResponseDataMap {
     }
 
     public String toJson() {
-        return GsonUtils.mapToJsonString(sendData, GsonUtils.GsonSerializerFeature.WriteNullValue);
-    }
-
-    public String toJson(GsonUtils.GsonSerializerFeature Setting) {
-        return GsonUtils.mapToJsonString(sendData, Setting);
+        return FastJsonUtils.mapToJsonString(sendData);
     }
 }

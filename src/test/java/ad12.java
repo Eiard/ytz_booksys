@@ -10,8 +10,10 @@ import service.book.BookService;
 import service.book.BookServiceImpl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * # -*- coding:utf-8 -*- #
@@ -23,19 +25,7 @@ public class ad12 {
     @Test
     public void asd12() {
 
-        // Borrow borrow = new Borrow();
-        //
-        // borrow.setBkId(1);
-        // borrow.setRdId(3);
-        // borrow.setDateBorrow();
-        // borrow.setDateLendAct();
-        int readerTypeNum = 10;
-        SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String DataBorrow = SimpleDateFormat.format(Calendar.getInstance().getTime());
-        Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_YEAR);
-        calendar.set(Calendar.DAY_OF_YEAR, day + readerTypeNum);
-        String DataBorrowPlan = SimpleDateFormat.format(new Date(calendar.getTimeInMillis()));
+        
     }
 
 }

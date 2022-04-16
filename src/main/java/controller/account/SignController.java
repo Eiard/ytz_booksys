@@ -35,6 +35,9 @@ public class SignController extends HttpServlet {
          * 获取
          *      用户名
          *      密码
+         *      QQ
+         *      学号
+         *      姓名
          */
         String identification = req.getParameter("identification");
         String password = req.getParameter("password");
