@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/axios.min.js"></script>
+    <script src="/vue2x.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="file" @change="hadleFile($event)" name="" id="myfile">
+    <input type="text" v-model="mytext">
+    <button @click="handleSubmit">上传</button>
+    sdfdsfdsfsfsfd
+</div>
+
+<script>
+    var app=new Vue({
+        el:'#app',
+        data:{
+            fileForm:null,
+            mytext:''
+        },
+        methods:{
+            hadleFile($event) {
+                let file = event.target.files[0];
+                console.log(file)
+                let fileFormData = new FormData();
+                fileFormData.append("file", file);
+                // fileFormData.append("id",123122)
+                this.fileForm = fileFormData;
+            },
+            handleSubmit(){
+                console.log(11111111)
+                this.fileForm.append('id',this.mytext)
+                console.log(this.mytext)
+                axios.post(
+                    '/dome',
+                    this.fileForm,
+                    // {
+                    //     file:this.fileForm,
+                    //     id:1212332
+                    // },
+                    { headers: { "Content-Type": "multipart/form-data" }, }
+                ).then(res=>{
+                    console.log(res)
+                }).catch(err=>{
+                    console.log(err)
+                })
+                console.log(22222222)
+            }
+        }
+
+    })
+</script>
+</body>
+</html>

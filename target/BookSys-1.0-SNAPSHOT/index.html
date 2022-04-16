@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/axios.min.js"></script>
+</head>
+<body>
+    <h1>文件上传</h1>
+    <h2><a href="input.html">文件上传</a></h2>
+    <input type="file" name="file" id="input-file">
+    <button id="submit-btn" >上传</button>
+    <script >
+        $('#submit-btn').click(function (){
+            let file= $('#input-file').val()
+            let fileFormData = new FormData()
+            fileFormData.append('myfile',file)
+            console.log(fileFormData)
+            axios.post(
+                '/dome',
+                fileFormData,
+                { headers: { "Content-Type": "multipart/form-data" }, }
+            ).then(res=>{
+                console.log(res)
+            }).catch(err=>{
+                console.log(err)
+            })
+
+
+        })
+
+    </script>
+</body>
+</html>
