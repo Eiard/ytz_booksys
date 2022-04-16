@@ -37,15 +37,8 @@ public class BorrowServiceImpl implements BorrowService {
     }
 
     @Override
-    public List<Boolean> lendBorrows(List<Borrow> borrows,int readerTypeDayNum) {
+    public List<Boolean> lendBorrows(List<Borrow> borrows, int readerTypeDayNum) {
         List<Boolean> booleans = new ArrayList<>();
-        Collections.fill(booleans, false);
-        int index = 0;
-
-        /**
-         * 这些书说明还没还
-         */
-        List<Book> books = noReturnBook(borrows.get(0).getRdId());
 
         SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String DataBorrow = SimpleDateFormat.format(Calendar.getInstance().getTime());
@@ -56,8 +49,12 @@ public class BorrowServiceImpl implements BorrowService {
 
         for (Borrow borrow : borrows) {
 
+            List<Book> books = noReturnBook(borrow.getRdId());
+            int booksSize = books.size();
+
+            int tick = 0;
             for (Book book : books) {
-                if (book.getBkId() == borrow.getRdId()) {
+                if (borrow.getBkId() == book.getBkId()) {
                     /**
                      * 未还的书
                      * 又继续借阅 (默认FALSE)
@@ -65,14 +62,16 @@ public class BorrowServiceImpl implements BorrowService {
                      * 去执行下一条借阅记录
                      */
                     break;
-                } else {
-                    borrow.setDateBorrow(DataBorrow);
-                    borrow.setDateLendPlan(DataBorrowPlan);
-
-                    booleans.set(index, lendBorrow(borrow));
                 }
+                tick++;
             }
-            index++;
+            if (tick == booksSize) {
+                borrow.setDateBorrow(DataBorrow);
+                borrow.setDateLendPlan(DataBorrowPlan);
+                booleans.add(lendBorrow(borrow));
+            } else {
+                booleans.add(false);
+            }
         }
         return booleans;
     }

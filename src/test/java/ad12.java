@@ -1,3 +1,4 @@
+import Utils.FastJsonUtils;
 import Utils.GsonUtils;
 import controller.controllerEnum.AccountEnum;
 import dao.book.BookMapper;
@@ -25,7 +26,21 @@ public class ad12 {
     @Test
     public void asd12() {
 
-        
+        List<Borrow> borrows = new ArrayList<>();
+
+        Borrow borrow1 = new Borrow();
+        borrow1.setRdId(2);
+        borrow1.setBkId(1);
+        Borrow borrow2 = new Borrow();
+        borrow2.setRdId(3);
+        borrow2.setBkId(1);
+
+        borrows.add(borrow1);
+        borrows.add(borrow2);
+
+        System.out.println(FastJsonUtils.listToJsonString(borrows));
+
+
     }
 
 }

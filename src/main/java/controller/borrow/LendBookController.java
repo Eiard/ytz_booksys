@@ -47,6 +47,8 @@ public class LendBookController extends HttpServlet {
          */
         int readerTypeDayNum = Integer.parseInt(req.getParameter("readerTypeDayNum"));
 
+        System.out.println(borrows);
+
         List<Boolean> booleans = LendBooks(borrows, readerTypeDayNum);
 
         /**
@@ -63,5 +65,4 @@ public class LendBookController extends HttpServlet {
         BorrowService borrowService = new BorrowServiceImpl();
         return borrowService.lendBorrows(borrows, readerTypeDayNum);
     }
-
 }
