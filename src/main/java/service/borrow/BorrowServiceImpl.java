@@ -86,7 +86,15 @@ public class BorrowServiceImpl implements BorrowService {
     public List<Boolean> returnBorrows(List<Borrow> Borrows) {
         List<Boolean> booleans = new ArrayList<>();
 
+        /**
+         * 获取现在还书的时间
+         */
+        SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dataLendAct = SimpleDateFormat.format(Calendar.getInstance().getTime());
+
+
         for (Borrow borrow : Borrows) {
+            borrow.setDateLendAct(dataLendAct);
             booleans.add(returnBorrow(borrow));
         }
         return booleans;
