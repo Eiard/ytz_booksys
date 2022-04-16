@@ -22,7 +22,7 @@ import java.io.PrintWriter;
 @WebServlet(name = "ChangeBookStatusController", urlPatterns = {"/ChangeBookStatusController"})
 public class ChangeBookStatusController extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setHeader("content-type", "text/html;charset=utf-8");
         PrintWriter out = resp.getWriter();
 
