@@ -1,8 +1,6 @@
 package controller.book;
 
-import Utils.FastJsonUtils;
 import Utils.ResponseDataMap;
-import com.alibaba.fastjson.TypeReference;
 import controller.controllerEnum.BookEnum;
 import pojo.Book;
 import service.book.BookService;
@@ -26,12 +24,11 @@ import java.util.List;
 public class QueryBookController extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setHeader("content-type", "text/html;charset=utf-8");
         PrintWriter out = resp.getWriter();
 
-        String bkInfo = FastJsonUtils.strToJavaBean(req.getParameter("bkInfo"), new TypeReference<String>() {
-        });
+        String bkInfo = req.getParameter("bkInfo");
 
         List<Book> books = queryBookList(bkInfo);
 

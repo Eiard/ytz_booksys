@@ -1,8 +1,6 @@
 package controller.account;
 
-import Utils.FastJsonUtils;
 import Utils.ResponseDataMap;
-import com.alibaba.fastjson.TypeReference;
 import controller.controllerEnum.AccountEnum;
 import pojo.Account;
 import service.account.AccountService;
@@ -17,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 
 /**
  * # -*- coding:utf-8 -*- #
@@ -45,12 +44,7 @@ public class SignController extends HttpServlet {
         String password = req.getParameter("password");
         String QQ = req.getParameter("QQ");
         int rdId = Integer.parseInt(req.getParameter("rdId"));
-
-        /**
-         * 安卓端在测试时 没用json编码 直接传递汉语会导致编码问题 (该Controller仅对User 开放接口)
-         */
-        String rdName = FastJsonUtils.strToJavaBean(req.getParameter("rdName"), new TypeReference<String>() {
-        });
+        String rdName = new String(req.getParameter("rdName").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
 
         Account account = new Account();
         account.setIdentification(identification);

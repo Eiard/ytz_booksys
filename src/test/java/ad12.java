@@ -11,10 +11,7 @@ import service.book.BookService;
 import service.book.BookServiceImpl;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * # -*- coding:utf-8 -*- #
@@ -25,23 +22,8 @@ public class ad12 {
 
     @Test
     public void asd12() {
-        String s = new String("谭虎");
-        System.out.println(FastJsonUtils.objectToJsonString(s));
+        Map<String,Object> map = new HashMap<>();
 
-
-        List<Borrow> borrows = new ArrayList<>();
-
-        Borrow borrow1 = new Borrow();
-        borrow1.setRdId(2);
-        borrow1.setBkId(1);
-        Borrow borrow2 = new Borrow();
-        borrow2.setRdId(3);
-        borrow2.setBkId(1);
-
-        borrows.add(borrow1);
-        borrows.add(borrow2);
-
-        System.out.println(FastJsonUtils.listToJsonString(borrows));
 
 
     }
