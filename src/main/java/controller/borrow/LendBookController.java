@@ -40,8 +40,12 @@ public class LendBookController extends HttpServlet {
             out.write(sendData.toJson());
             return;
         }
+        /**
+         * 可借天数
+         */
+        int readerTypeDayNum = Integer.parseInt(req.getParameter("readerTypeDayNum"));
 
-        List<Boolean> booleans = LendBooks(borrows);
+        List<Boolean> booleans = LendBooks(borrows, readerTypeDayNum);
 
         /**
          * 回复数据封装
@@ -53,9 +57,9 @@ public class LendBookController extends HttpServlet {
         out.write(sendData.toJson());
     }
 
-    public List<Boolean> LendBooks(List<Borrow> borrows) {
+    public List<Boolean> LendBooks(List<Borrow> borrows, int readerTypeDayNum) {
         BorrowService borrowService = new BorrowServiceImpl();
-        return borrowService.lendBorrows(borrows);
+        return borrowService.lendBorrows(borrows, readerTypeDayNum);
     }
 
 }

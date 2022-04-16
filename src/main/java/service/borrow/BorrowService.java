@@ -28,9 +28,10 @@ public interface BorrowService {
      * 借书 并且添加借书记录 (多本)
      *
      * @param borrows
+     * @param readerTypeDayNum
      * @return List<Boolean>
      */
-    List<Boolean> lendBorrows(List<Borrow> borrows);
+    List<Boolean> lendBorrows(List<Borrow> borrows, int readerTypeDayNum);
 
     /**
      * Return Borrow

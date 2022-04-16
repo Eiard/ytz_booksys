@@ -7,9 +7,8 @@ import pojo.Borrow;
 import service.book.BookService;
 import service.book.BookServiceImpl;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * # -*- coding:utf-8 -*- #
@@ -38,7 +37,7 @@ public class BorrowServiceImpl implements BorrowService {
     }
 
     @Override
-    public List<Boolean> lendBorrows(List<Borrow> borrows) {
+    public List<Boolean> lendBorrows(List<Borrow> borrows,int readerTypeDayNum) {
         List<Boolean> booleans = new ArrayList<>();
         Collections.fill(booleans, false);
         int index = 0;
@@ -48,7 +47,16 @@ public class BorrowServiceImpl implements BorrowService {
          */
         List<Book> books = noReturnBook(borrows.get(0).getRdId());
 
+        SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String DataBorrow = SimpleDateFormat.format(Calendar.getInstance().getTime());
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_YEAR);
+        calendar.set(Calendar.DAY_OF_YEAR, day + readerTypeDayNum);
+        String DataBorrowPlan = SimpleDateFormat.format(new Date(calendar.getTimeInMillis()));
+
         for (Borrow borrow : borrows) {
+
+
             for (Book book : books) {
                 if (book.getBkId() == borrow.getRdId()) {
                     /**
@@ -59,6 +67,9 @@ public class BorrowServiceImpl implements BorrowService {
                      */
                     break;
                 } else {
+                    borrow.setDateBorrow(DataBorrow);
+                    borrow.setDateLendPlan(DataBorrowPlan);
+
                     booleans.set(index, lendBorrow(borrow));
                 }
             }
