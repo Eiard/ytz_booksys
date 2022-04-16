@@ -64,10 +64,20 @@ public interface BorrowService {
     /**
      * Query All No Return Book Information
      * User interface
-     * 未还的书信息(查找读者自己的)
+     * 未还的书信息(查找某个读者)
      *
      * @param rdId
      * @return List<Book>
      */
     List<Book> noReturnBook(int rdId);
+
+    /**
+     * Query All Borrow Info By No Return Book
+     * Common interface
+     * 未还的借阅信息(查找某个读者)
+     *
+     * @param books
+     * @return List<Book>
+     */
+    List<Borrow> queryBorrowByBooks(int rdId,List<Book> books);
 }

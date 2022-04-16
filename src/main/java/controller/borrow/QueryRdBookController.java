@@ -3,6 +3,7 @@ package controller.borrow;
 import Utils.ResponseDataMap;
 import controller.controllerEnum.BorrowEnum;
 import pojo.Book;
+import pojo.Borrow;
 import service.borrow.BorrowService;
 import service.borrow.BorrowServiceImpl;
 
@@ -30,6 +31,7 @@ public class QueryRdBookController extends HttpServlet {
         int rdId = Integer.parseInt(req.getParameter("rdId"));
 
         List<Book> books = queryBookList(rdId);
+        List<Borrow> borrows = queryBorrowByBooks(rdId,books);
         BorrowEnum borrowEnum;
 
         /**
@@ -49,6 +51,7 @@ public class QueryRdBookController extends HttpServlet {
         sendData.setStatus(borrowEnum.ordinal());
         sendData.setMsg(borrowEnum.toString());
         sendData.setData(books);
+        sendData.put("borrows",borrows);
 
         out.write(sendData.toJson());
     }
@@ -58,4 +61,10 @@ public class QueryRdBookController extends HttpServlet {
         BorrowService borrowService = new BorrowServiceImpl();
         return borrowService.noReturnBook(rdId);
     }
+
+    public List<Borrow> queryBorrowByBooks(int rdId, List<Book> books) {
+        BorrowService borrowService = new BorrowServiceImpl();
+        return borrowService.queryBorrowByBooks(rdId, books);
+    }
+
 }

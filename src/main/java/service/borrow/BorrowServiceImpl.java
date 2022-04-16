@@ -8,7 +8,10 @@ import service.book.BookService;
 import service.book.BookServiceImpl;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 /**
  * # -*- coding:utf-8 -*- #
@@ -108,6 +111,8 @@ public class BorrowServiceImpl implements BorrowService {
 
     @Override
     public List<Book> noReturnBook(int rdId) {
+
+
         List<Book> books = new ArrayList<>();
 
         List<Borrow> borrowList = queryAllBorrow();
@@ -122,5 +127,23 @@ public class BorrowServiceImpl implements BorrowService {
             }
         }
         return books;
+    }
+
+    @Override
+    public List<Borrow> queryBorrowByBooks(int rdId, List<Book> books) {
+        List<Borrow> borrows = new ArrayList<>();
+
+        List<Borrow> borrowList = queryAllBorrow();
+        for (Book book : books) {
+            for (Borrow borrow : borrowList) {
+                if (rdId == borrow.getRdId() && book.getBkId() == borrow.getBkId()
+                        && ("".equals(borrow.getDateLendAct()) || borrow.getDateLendAct() == null)) {
+                    if (borrow.getBkId() == book.getBkId()) {
+                        borrows.add(borrow);
+                    }
+                }
+            }
+        }
+        return borrows;
     }
 }
