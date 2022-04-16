@@ -18,7 +18,7 @@ public class AccountServiceImpl implements AccountService {
      */
     private AccountMapper accountMapper;
 
-    public AccountServiceImpl(){
+    public AccountServiceImpl() {
         accountMapper = new AccountMapperImpl();
     }
 

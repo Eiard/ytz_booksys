@@ -3,8 +3,6 @@ package Utils;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
 import javax.sql.DataSource;
-import java.io.IOException;
-import java.sql.*;
 import java.util.Properties;
 
 /**
@@ -14,14 +12,14 @@ import java.util.Properties;
  */
 public class JdbcUtils {
 
-    private static DataSource dataSource ;
+    private static DataSource dataSource;
 
     /**
      * 文件的读取，只需要读取一次即可拿到这些值。使用静态代码块
      * 从文件中读取信息
      * 然后进行Utils的属性初始化
      */
-    static{
+    static {
         try {
             //1.加载配置文件
             Properties druidProperties = new Properties();
@@ -43,9 +41,10 @@ public class JdbcUtils {
 
     /**
      * 返回连接池对象
+     *
      * @return DataSource
      */
-    public static DataSource getDataSource(){
-        return  dataSource;
+    public static DataSource getDataSource() {
+        return dataSource;
     }
 }

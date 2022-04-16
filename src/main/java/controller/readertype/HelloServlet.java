@@ -1,14 +1,16 @@
 package controller.readertype;
 
-import java.io.*;
-import java.util.List;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
-
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.util.List;
 
 @WebServlet(name = "helloServlet", value = "/dome")
 public class HelloServlet extends HttpServlet {
@@ -18,6 +20,7 @@ public class HelloServlet extends HttpServlet {
     public void init() {
         message = "Hello World!";
     }
+
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
@@ -48,15 +51,15 @@ public class HelloServlet extends HttpServlet {
 
                 for (FileItem item : fileItems) {
                     if (item.isFormField()) {     //如果item为普通表单
-                          //这里获得的是普通的表单，即普通键值对，存在字符串编码问题
+                        //这里获得的是普通的表单，即普通键值对，存在字符串编码问题
                         String fieldName = item.getFieldName();   //键
                         String fieldValue = item.getString();     //值
 
-                        System.out.println("=>"+fieldName+" : "+fieldValue);
+                        System.out.println("=>" + fieldName + " : " + fieldValue);
 
                     } else {
                         String fileName = item.getName();     //这里获得的是文件名
-                        System.out.println("**=>"+fileName);
+                        System.out.println("**=>" + fileName);
                         inputStream = item.getInputStream();
                         String path = this.getServletContext().getRealPath("/");     //这里是文件存放的路径，相对于静态资源为根路径，如果添加文件夹，须确保该文件夹存在
                         File file = new File(path, fileName);
@@ -70,12 +73,10 @@ public class HelloServlet extends HttpServlet {
 
                     }
                 }
-            }catch (EOFException | FileUploadException e){
+            } catch (EOFException | FileUploadException e) {
                 e.printStackTrace();
             }
         }
-
-
 
 
     }

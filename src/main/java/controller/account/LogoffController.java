@@ -62,7 +62,7 @@ public class LogoffController extends HttpServlet {
 
         Account account = accountService.queryOneAccount(identification);
 
-        if (account == null){
+        if (account == null) {
             return AccountEnum.LOGOFF_ID_NOT_EXIST_ERROR;
         }
 

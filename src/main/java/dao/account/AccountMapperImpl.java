@@ -18,8 +18,8 @@ public class AccountMapperImpl implements AccountMapper {
      */
     private JdbcTemplate Sql;
 
-    public AccountMapperImpl(){
-        Sql  = new JdbcTemplate(JdbcUtils.getDataSource());
+    public AccountMapperImpl() {
+        Sql = new JdbcTemplate(JdbcUtils.getDataSource());
     }
 
     @Override
@@ -47,8 +47,8 @@ public class AccountMapperImpl implements AccountMapper {
     public int updateAccount(String password, String QQ, String identification) {
         String sql =
                 "UPDATE account SET " +
-                "password = ?,QQ = ?" +
-                "WHERE identification = ?";
+                        "password = ?,QQ = ?" +
+                        "WHERE identification = ?";
 
         return Sql.update(sql, password, QQ, identification);
     }

@@ -12,14 +12,14 @@ import java.util.List;
  * 作者:30671
  * 日期:2022年03月02日10时07分
  */
-public class ReaderMapperImpl implements ReaderMapper{
+public class ReaderMapperImpl implements ReaderMapper {
     /**
      * jdbcTemplate object
      */
     private JdbcTemplate Sql;
 
-    public ReaderMapperImpl(){
-        Sql  = new JdbcTemplate(JdbcUtils.getDataSource());
+    public ReaderMapperImpl() {
+        Sql = new JdbcTemplate(JdbcUtils.getDataSource());
     }
 
     @Override

@@ -14,7 +14,7 @@ public interface AccountMapper {
     /**
      * Sign Up
      * User private interface
-     *
+     * <p>
      * 注册一个用户
      *
      * @param account
@@ -25,7 +25,7 @@ public interface AccountMapper {
     /**
      * Log Out
      * Common interface
-     *
+     * <p>
      * 删除一个用户
      *
      * @param identification
@@ -37,7 +37,7 @@ public interface AccountMapper {
      * Update User Information
      * Only password QQ  user can change
      * Common interface
-     *
+     * <p>
      * 修改用户信息 QQ 密码
      *
      * @param password
@@ -51,7 +51,7 @@ public interface AccountMapper {
     /**
      * Query All Account
      * Common interface
-     *
+     * <p>
      * 查询所有读者信息
      *
      * @return List<Account>

@@ -14,7 +14,7 @@ public interface BorrowMapper {
     /**
      * Add Borrow Information (Lend Book)
      * User interface
-     *
+     * <p>
      * 借书同时添加借书记录
      * 利用触发器实现书-- 和 已借书籍++
      *
@@ -26,7 +26,7 @@ public interface BorrowMapper {
     /**
      * Update Book Information (Return Book)
      * User interface
-     *
+     * <p>
      * 还书并且更新借阅信息
      * 利用触发器实现书++ 和 已借书籍--
      *
@@ -38,7 +38,7 @@ public interface BorrowMapper {
     /**
      * Query All Borrow Information
      * Common interface
-     *
+     * <p>
      * 查询所有借阅信息
      *
      * @return List<Borrow>

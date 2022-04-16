@@ -14,7 +14,7 @@ public interface ReaderTypeMapper {
     /**
      * Add ReaderType
      * Root interface
-     *
+     * <p>
      * 添加读者类别
      *
      * @param readerType
@@ -25,7 +25,7 @@ public interface ReaderTypeMapper {
     /**
      * Delete ReaderType
      * Root interface
-     *
+     * <p>
      * 删除读者类别
      *
      * @param rdType
@@ -36,7 +36,7 @@ public interface ReaderTypeMapper {
     /**
      * Update ReaderType Information
      * Root interface
-     *
+     * <p>
      * 更改读者类别信息
      *
      * @param readerType
@@ -47,7 +47,7 @@ public interface ReaderTypeMapper {
     /**
      * Query All ReaderType Information
      * Root interface
-     *
+     * <p>
      * 管理员查询所有读者类别信息
      *
      * @return List<ReaderType>

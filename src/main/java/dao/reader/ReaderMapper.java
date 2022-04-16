@@ -14,7 +14,7 @@ public interface ReaderMapper {
     /**
      * Add Reader
      * Root interface
-     *
+     * <p>
      * 管理员添加读者信息
      *
      * @param reader
@@ -25,7 +25,7 @@ public interface ReaderMapper {
     /**
      * Update Reader Information Or Delete Reader
      * Root interface
-     *
+     * <p>
      * 更改读者信息
      *
      * @param reader
@@ -36,7 +36,7 @@ public interface ReaderMapper {
     /**
      * Query All Reader Information
      * Common interface
-     *
+     * <p>
      * 查询所有读者
      *
      * @return List<Reader>

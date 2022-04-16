@@ -4,7 +4,6 @@ import Utils.GsonUtils;
 import Utils.ResponseDataMap;
 import controller.controllerEnum.BookEnum;
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import pojo.Book;
@@ -94,7 +93,7 @@ public class AddBookController extends HttpServlet {
              */
             String fileName = bkId.toString();
             System.out.println("**=>" + fileName);
-            if (imageItem ==null){
+            if (imageItem == null) {
                 return BookEnum.UNKNOWN_ERROR;
             }
             inputStream = imageItem.getInputStream();

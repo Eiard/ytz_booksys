@@ -101,7 +101,7 @@ public interface AccountService {
      * @param password
      * @return int
      */
-    int identificationAndPassword(String identification,String password);
+    int identificationAndPassword(String identification, String password);
 
     /**
      * 通过用户名找到其学号

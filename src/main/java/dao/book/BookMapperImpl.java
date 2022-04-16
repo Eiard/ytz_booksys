@@ -18,17 +18,17 @@ public class BookMapperImpl implements BookMapper {
      */
     private JdbcTemplate Sql;
 
-    public BookMapperImpl(){
-        Sql  = new JdbcTemplate(JdbcUtils.getDataSource());
+    public BookMapperImpl() {
+        Sql = new JdbcTemplate(JdbcUtils.getDataSource());
     }
 
     @Override
     public int addBook(Book book) {
         String sql =
                 "INSERT INTO book " +
-                "(bkName,bkAuthor,bkPress," +
-                "bkPrice,bkNum,bkState,bkImageUrl) " +
-                "VALUES (?,?,?,?,?,?,?)";
+                        "(bkName,bkAuthor,bkPress," +
+                        "bkPrice,bkNum,bkState,bkImageUrl) " +
+                        "VALUES (?,?,?,?,?,?,?)";
 
         return Sql.update(sql,
                 book.getBkName(),
@@ -44,10 +44,10 @@ public class BookMapperImpl implements BookMapper {
     public int updateBook(Book book) {
         String sql =
                 "UPDATE book SET " +
-                "bkName = ?,bkAuthor = ?," +
-                "bkPress = ?,bkPrice = ?," +
-                "bkNum = ?,bkState = ? ," +
-                "bkImageUrl = ? WHERE bkId = ?";
+                        "bkName = ?,bkAuthor = ?," +
+                        "bkPress = ?,bkPrice = ?," +
+                        "bkNum = ?,bkState = ? ," +
+                        "bkImageUrl = ? WHERE bkId = ?";
 
         return Sql.update(sql,
                 book.getBkName(),

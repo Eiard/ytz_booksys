@@ -52,7 +52,7 @@ public class SignController extends HttpServlet {
          * 执行操作
          * 返回状态码
          */
-        AccountEnum accountEnum  = sign(account,rdName);
+        AccountEnum accountEnum = sign(account, rdName);
 
         /**
          * 回复数据封装

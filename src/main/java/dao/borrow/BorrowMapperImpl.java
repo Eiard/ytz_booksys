@@ -18,16 +18,16 @@ public class BorrowMapperImpl implements BorrowMapper {
      */
     private JdbcTemplate Sql;
 
-    public BorrowMapperImpl(){
-        Sql  = new JdbcTemplate(JdbcUtils.getDataSource());
+    public BorrowMapperImpl() {
+        Sql = new JdbcTemplate(JdbcUtils.getDataSource());
     }
 
     @Override
     public int addBorrow(Borrow borrow) {
         String sql =
                 "INSERT INTO borrow " +
-                "(rdId,bkId,dateBorrow,dateLendPlan) " +
-                "VALUES (?,?,?,?)";
+                        "(rdId,bkId,dateBorrow,dateLendPlan) " +
+                        "VALUES (?,?,?,?)";
 
         return Sql.update(sql,
                 borrow.getRdId(),
@@ -40,8 +40,8 @@ public class BorrowMapperImpl implements BorrowMapper {
     public int updateBorrow(Borrow borrow) {
         String sql =
                 "UPDATE borrow SET " +
-                "dateLendAct = ?" +
-                "WHERE rdId = ? AND bkId = ? AND dateBorrow = ?";
+                        "dateLendAct = ?" +
+                        "WHERE rdId = ? AND bkId = ? AND dateBorrow = ?";
 
         return Sql.update(sql,
                 borrow.getDateLendAct(),

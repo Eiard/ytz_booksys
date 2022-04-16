@@ -14,7 +14,7 @@ public interface BookMapper {
     /**
      * Add Book
      * Root interface
-     *
+     * <p>
      * 添加一本书
      *
      * @param book
@@ -25,7 +25,7 @@ public interface BookMapper {
     /**
      * Update Book
      * Root interface
-     *
+     * <p>
      * 更新一本书信息  管理员
      *
      * @param book
@@ -36,7 +36,7 @@ public interface BookMapper {
     /**
      * Query All Book
      * Common interface
-     *
+     * <p>
      * 查询所有书信息
      *
      * @return List<Book>

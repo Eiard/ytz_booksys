@@ -19,7 +19,7 @@ public interface ReaderService {
      * @param reader
      * @return int
      */
-     int addReader(Reader reader);
+    int addReader(Reader reader);
 
     /**
      * Add Readers
@@ -89,7 +89,7 @@ public interface ReaderService {
      * @param rdDept
      * @return List<Reader>
      */
-    List<Reader> fuzzyQueryAllReader(String rdName,String rdDept);
+    List<Reader> fuzzyQueryAllReader(String rdName, String rdDept);
 
     /**
      * Query By RdId And RdName
@@ -100,7 +100,7 @@ public interface ReaderService {
      * @param rdName
      * @return boolean
      */
-    boolean queryReaderExist(int rdId,String rdName);
+    boolean queryReaderExist(int rdId, String rdName);
 
     /**
      * Query Reader By RdId

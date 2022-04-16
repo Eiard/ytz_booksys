@@ -1,7 +1,5 @@
 package service.reader;
 
-import dao.book.BookMapper;
-import dao.book.BookMapperImpl;
 import dao.reader.ReaderMapper;
 import dao.reader.ReaderMapperImpl;
 import pojo.Reader;
@@ -21,7 +19,7 @@ public class ReaderServiceImpl implements ReaderService {
      */
     private ReaderMapper readerMapper;
 
-    public ReaderServiceImpl(){
+    public ReaderServiceImpl() {
         readerMapper = new ReaderMapperImpl();
     }
 
@@ -32,7 +30,7 @@ public class ReaderServiceImpl implements ReaderService {
 
     @Override
     public int addReaders(List<Reader> readers) {
-        if (readers==null){
+        if (readers == null) {
             return 0;
         }
         for (Reader reader : readers) {
@@ -48,7 +46,7 @@ public class ReaderServiceImpl implements ReaderService {
 
     @Override
     public int updateReaders(List<Reader> readers) {
-        if (readers==null){
+        if (readers == null) {
             return 0;
         }
         for (Reader reader : readers) {
