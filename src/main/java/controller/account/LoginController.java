@@ -43,7 +43,10 @@ public class LoginController extends HttpServlet {
 
         /**
          * 执行操作
-         * 返回状态码
+         *   账号或密码错误   LOGIN_ACCOUNT_PASSWORD_ERROR
+         *   USER登录成功    LOGIN_USER_SUCCESS
+         *   ROOT登录成功    LOGIN_ROOT_SUCCESS
+         *   未知错误        UNKNOWN_ERROR
          */
         AccountEnum accountEnum = login(identification, password);
 
@@ -77,7 +80,9 @@ public class LoginController extends HttpServlet {
      * @return AccountEnum
      */
     protected AccountEnum login(String identification, String password) {
+
         AccountService accountService = new AccountServiceImpl();
+
 
         int status = accountService.identificationAndPassword(identification, password);
 
@@ -109,6 +114,9 @@ public class LoginController extends HttpServlet {
         AccountService accountService = new AccountServiceImpl();
 
         Account account = accountService.queryOneAccount(identification);
+        /**
+         * 密码擦除
+         */
         account.setPassword("");
         sendData.setData(account);
 

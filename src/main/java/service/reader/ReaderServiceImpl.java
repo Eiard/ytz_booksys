@@ -71,7 +71,7 @@ public class ReaderServiceImpl implements ReaderService {
     @Override
     public int queryReaderByRdType(int rdType) {
         int Count = 0;
-        List<Reader> readers = readerMapper.queryAllReader();
+        List<Reader> readers = queryAllReader();
         for (Reader reader : readers) {
             if (reader.getRdType() == rdType) {
                 Count++;

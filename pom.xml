@@ -15,7 +15,6 @@
         <maven.compiler.target>15</maven.compiler.target>
     </properties>
 
-
     <dependencies>
 
         <!-- 数据库连接 jar包 -->
@@ -31,6 +30,7 @@
             <artifactId>druid</artifactId>
             <version>1.2.3</version>
         </dependency>
+
 
         <!-- servlet jar包 -->
         <dependency>
@@ -77,7 +77,7 @@
             <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>
-        <!-- GSON -->
+        <!-- GSON 不推荐使用  Int 类型在反解码会变为double类型 -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>

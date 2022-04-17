@@ -1,5 +1,6 @@
 import Utils.FastJsonUtils;
 import Utils.GsonUtils;
+import Utils.JdbcUtils;
 import controller.controllerEnum.AccountEnum;
 import dao.book.BookMapper;
 import dao.book.BookMapperImpl;
@@ -9,6 +10,8 @@ import pojo.Book;
 import pojo.Borrow;
 import service.book.BookService;
 import service.book.BookServiceImpl;
+import service.reader.ReaderService;
+import service.reader.ReaderServiceImpl;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -23,16 +26,8 @@ public class ad12 {
     @Test
     public void asd12() {
 
-        List<Borrow> borrows=  new ArrayList<>();
-
-        Borrow borrow = new Borrow();
-        borrow.setBkId(1);
-        borrow.setRdId(2);
-        borrow.setDateBorrow("2022-04-16 21:51:49");
-
-        borrows.add(borrow);
-        System.out.println(FastJsonUtils.listToJsonString(borrows));
-
+        System.out.println(AccountEnum.LOGIN_ACCOUNT_PASSWORD_ERROR.toString());
+        System.out.println(AccountEnum.LOGIN_ACCOUNT_PASSWORD_ERROR.ordinal());
 
     }
 

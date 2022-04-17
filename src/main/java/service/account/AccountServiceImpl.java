@@ -38,9 +38,16 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public List<Account> queryAllAccount() {
+    public List<Account>queryAllAccount () {
         return accountMapper.queryAllAccount();
     }
+
+
+    /**
+     * --------------------------------------------------------------
+     * @param identification
+     * @return
+     */
 
     @Override
     public boolean identificationIsExist(String identification) {
