@@ -34,7 +34,7 @@ public class QueryBookController extends HttpServlet {
 
         BookEnum bookEnum;
         if (books.size() == 0) {
-            bookEnum = BookEnum.QUERY_NO_BOOK_ERROR;
+            bookEnum = BookEnum.QUERY_NONE_BOOK_ERROR;
         } else {
             bookEnum = BookEnum.QUERY_SUCCESS;
         }

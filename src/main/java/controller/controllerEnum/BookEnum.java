@@ -27,7 +27,7 @@ public enum BookEnum {
      * 查询成功
      */
     QUERY_SUCCESS,
-    QUERY_NO_BOOK_ERROR,
+    QUERY_NONE_BOOK_ERROR,
 
     /**
      * 未知错误
