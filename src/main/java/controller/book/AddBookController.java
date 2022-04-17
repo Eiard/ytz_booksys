@@ -1,7 +1,8 @@
 package controller.book;
 
-import Utils.GsonUtils;
+import Utils.FastJsonUtils;
 import Utils.ResponseDataMap;
+import com.alibaba.fastjson.TypeReference;
 import controller.controllerEnum.BookEnum;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -74,7 +75,8 @@ public class AddBookController extends HttpServlet {
                 String key = item.getFieldName();   //键
                 String jsonString = item.getString();     //值
                 if (key.equals("book")) {
-                    book = GsonUtils.strToJavaBean(jsonString, Book.class);
+                    book = FastJsonUtils.strToJavaBean(jsonString, new TypeReference<Book>() {
+                    });
                 }
             } else {  // 找到图片信息 临时取出来
                 imageItem = item;
@@ -94,7 +96,7 @@ public class AddBookController extends HttpServlet {
             String fileName = bkId.toString();
             System.out.println("**=>" + fileName);
             if (imageItem == null) {
-                return BookEnum.UNKNOWN_ERROR;
+                return BookEnum.ADD_BOOK_IMAGE_ERROR;
             }
             inputStream = imageItem.getInputStream();
 
@@ -102,6 +104,7 @@ public class AddBookController extends HttpServlet {
              * 分别为
              *      动态地址(Tomcat运行的静态资源地址)
              *      静态地址(代码区)       每次启动程序会将静态地址的图片加载到动态区
+             *      图片双向拷贝
              */
             String dynamicPath = this.getServletContext().getRealPath("/BookImage/");
             String staticPath = "D:/Computer/Code/Java/BookServer/src/main/webapp/BookImage/";

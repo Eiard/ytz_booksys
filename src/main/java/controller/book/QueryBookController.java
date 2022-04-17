@@ -50,11 +50,6 @@ public class QueryBookController extends HttpServlet {
         out.write(sendData.toJson());
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println(1);
-    }
-
     public List<Book> queryBookList(String bkInfo) {
         BookService bookService = new BookServiceImpl();
 

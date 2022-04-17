@@ -13,6 +13,7 @@ public enum BookEnum {
      */
     ADD_BOOK_SUCCESS,
     ADD_SAME_BOOK_ERROR,
+    ADD_BOOK_IMAGE_ERROR,
 
 
     /**
@@ -21,6 +22,7 @@ public enum BookEnum {
      */
     CHANGE_BOOK_STATUS_SUCCESS,
     CHANGE_BOOK_BKID_NOT_EXIST_ERROR,
+    CHANGE_BOOK_IMAGE_ERROR,
 
 
     /**
