@@ -39,21 +39,19 @@ public class BorrowMapperImpl implements BorrowMapper {
     @Override
     public int updateBorrow(Borrow borrow) {
         String sql =
-                "UPDATE borrow SET " +
-                        "dateLendAct = ?" +
-                        "WHERE rdId = ? AND bkId = ? AND dateBorrow = ? AND dateLendAct IS NULL";
+                "UPDATE borrow SET dateLendAct = ? AND isReturn = 1 " +
+                        "WHERE rdId = ? AND bkId = ? AND isReturn = 0";
 
         return Sql.update(sql,
                 borrow.getDateLendAct(),
                 borrow.getRdId(),
-                borrow.getBkId(),
-                borrow.getDateBorrow());
+                borrow.getBkId());
     }
 
     @Override
     public List<Borrow> queryAllBorrow() {
         String sql = "SELECT * FROM borrow";
 
-        return Sql.query(sql, new BeanPropertyRowMapper<Borrow>(Borrow.class));
+        return Sql.query(sql, new BeanPropertyRowMapper<>(Borrow.class));
     }
 }

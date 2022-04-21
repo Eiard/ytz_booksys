@@ -18,5 +18,6 @@ public class Borrow {
     private String dateBorrow;
     private String dateLendPlan;
     private String dateLendAct;
-    private byte state;
+    private byte overdue;
+    private byte isReturn;
 }
