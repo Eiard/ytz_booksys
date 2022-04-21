@@ -29,7 +29,7 @@ public class LendBookController extends HttpServlet {
         resp.setHeader("content-type", "text/html;charset=utf-8");
         PrintWriter out = resp.getWriter();
 
-        List<Borrow> borrows = null;
+        List<Borrow> borrows;
         BorrowEnum borrowEnum = BorrowEnum.LEND_SUCCESS;
         ResponseDataMap sendData = new ResponseDataMap();
         try {
@@ -46,16 +46,17 @@ public class LendBookController extends HttpServlet {
          * 可借天数
          */
         int readerTypeDayNum = Integer.parseInt(req.getParameter("readerTypeDayNum"));
-
+        /**
+         * 一次性多次借书 返回对应状态
+         */
         List<Boolean> booleans = LendBooks(borrows, readerTypeDayNum);
 
         /**
          * 回复数据封装
          */
+        sendData.setData(booleans);
         sendData.setStatus(borrowEnum.ordinal());
         sendData.setMsg(borrowEnum.toString());
-        sendData.setData(booleans);
-
         out.write(sendData.toJson());
     }
 

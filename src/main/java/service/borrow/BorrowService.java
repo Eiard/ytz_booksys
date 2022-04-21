@@ -77,7 +77,7 @@ public interface BorrowService {
      * 未还的借阅信息(查找某个读者)
      *
      * @param books
-     * @return List<Book>
+     * @return List<Borrow>
      */
     List<Borrow> queryBorrowByBooks(int rdId,List<Book> books);
 }

@@ -29,7 +29,7 @@ public class ReturnBookController extends HttpServlet {
         resp.setHeader("content-type", "text/html;charset=utf-8");
         PrintWriter out = resp.getWriter();
 
-        List<Borrow> borrows = null;
+        List<Borrow> borrows;
         BorrowEnum borrowEnum = BorrowEnum.RETURN_SUCCESS;
         ResponseDataMap sendData = new ResponseDataMap();
         try {
@@ -48,10 +48,9 @@ public class ReturnBookController extends HttpServlet {
         /**
          * 回复数据封装
          */
+        sendData.setData(booleans);
         sendData.setStatus(borrowEnum.ordinal());
         sendData.setMsg(borrowEnum.toString());
-        sendData.setData(booleans);
-
         out.write(sendData.toJson());
     }
 
