@@ -83,6 +83,7 @@ public class SignController extends HttpServlet {
         /**
          * 用户名已被注册           SIGN_IDENTIFICATION_EXIST_ERROR
          * 读者ID存在(已经被注册过)  SIGN_RDID_EXIST_ERROR
+         * 学号被Ban 禁用          SIGN_RDID_BE_BAN_ERROR
          * 学号与姓名不匹配         SIGN_RDID_MATCH_RDNAME_ERROR
          * 注册成功               SIGN_SUCCESS
          * 未知错误               UNKNOWN_ERROR
@@ -93,6 +94,10 @@ public class SignController extends HttpServlet {
 
         if (accountService.accountIsExist(account.getRdId())) {
             return AccountEnum.SIGN_RDID_EXIST_ERROR;
+        }
+
+        if (readerService.readerState(account.getRdId())){
+            return AccountEnum.SIGN_RDID_BE_BAN_ERROR;
         }
 
         if (!(readerService.queryReaderExist(account.getRdId(), name))) {

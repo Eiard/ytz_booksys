@@ -33,6 +33,7 @@ public enum AccountEnum {
     SIGN_IDENTIFICATION_EXIST_ERROR,
     SIGN_RDID_EXIST_ERROR,
     SIGN_RDID_MATCH_RDNAME_ERROR,
+    SIGN_RDID_BE_BAN_ERROR,
 
     /**
      * 更改读者信息 QQ 和密码

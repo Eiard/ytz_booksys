@@ -69,6 +69,21 @@ public class ReaderServiceImpl implements ReaderService {
     }
 
     @Override
+    public boolean readerState(int rdId) {
+        List<Reader> readers = queryAllReader();
+
+        /**
+         * 学号被禁用
+         */
+        for (Reader reader:readers){
+            if (rdId == reader.getRdId() && reader.getRdState() == 1){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public int queryReaderByRdType(int rdType) {
         int Count = 0;
         List<Reader> readers = queryAllReader();

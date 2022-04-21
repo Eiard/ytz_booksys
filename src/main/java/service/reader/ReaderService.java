@@ -71,6 +71,16 @@ public interface ReaderService {
     boolean changeReaderState(Reader reader);
 
     /**
+     * 判断学号是否被停用
+     * 是被禁用 则返回 true
+     * Common interface
+     *
+     * @param rdId
+     * @return boolean
+     */
+    boolean readerState(int rdId);
+
+    /**
      * Count The Num Of Reader Is ReaderType
      * Common interface
      * 查询某个读者类别的读者人数

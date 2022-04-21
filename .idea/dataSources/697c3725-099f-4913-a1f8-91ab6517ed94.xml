@@ -916,10 +916,10 @@ SELECT|sys.sys_config
       <SourceTextLength>96</SourceTextLength>
       <Definer>root@localhost</Definer>
       <Interval>&apos;1&apos; MINUTE</Interval>
-      <Starts>&apos;2022-04-21 21:52:07&apos;</Starts>
+      <Starts>&apos;2022-04-21 22:37:21&apos;</Starts>
       <Preserve>1</Preserve>
       <Status>enabled</Status>
-      <LastExecuted>2022-04-22.05:52:07</LastExecuted>
+      <LastExecuted>2022-04-22.06:37:21</LastExecuted>
     </scheduled-event>
     <column id="289" parent="283" name="identification">
       <Position>1</Position>
