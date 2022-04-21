@@ -137,20 +137,40 @@ public class BorrowServiceImpl implements BorrowService {
     }
 
     @Override
-    public List<Borrow> queryBorrowByBooks(int rdId, List<Book> books) {
+    public List<Borrow> queryBorrowByrdId(int rdId) {
         List<Borrow> borrows = new ArrayList<>();
 
         List<Borrow> borrowList = queryAllBorrow();
-        for (Book book : books) {
-            for (Borrow borrow : borrowList) {
-                if (rdId == borrow.getRdId() && book.getBkId() == borrow.getBkId()
-                        && borrow.getIsReturn() == 0) {
-                    if (borrow.getBkId() == book.getBkId()) {
-                        borrows.add(borrow);
-                    }
-                }
+        for (Borrow borrow : borrowList) {
+            if (rdId == borrow.getRdId() && borrow.getIsReturn() == 0) {
+                borrows.add(borrow);
             }
         }
+
         return borrows;
+    }
+
+
+    /**
+     * Query Overdue Num
+     * Common interface
+     * 逾期总次数
+     *
+     * @param rdId
+     * @return int
+     */
+    @Override
+    public int queryOverdueNum(int rdId) {
+        List<Borrow> borrows = queryAllBorrow();
+
+        int overDueNum = 0;
+
+        for (Borrow borrow : borrows) {
+            if (borrow.getRdId() == rdId && borrow.getOverdue() == 1) {
+                overDueNum++;
+            }
+        }
+
+        return overDueNum;
     }
 }

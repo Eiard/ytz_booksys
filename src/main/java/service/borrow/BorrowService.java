@@ -76,8 +76,18 @@ public interface BorrowService {
      * Common interface
      * 未还的借阅信息(查找某个读者)
      *
-     * @param books
+     * @param rdId
      * @return List<Borrow>
      */
-    List<Borrow> queryBorrowByBooks(int rdId,List<Book> books);
+    List<Borrow> queryBorrowByrdId(int rdId);
+
+    /**
+     * Query Overdue Num
+     * Common interface
+     * 逾期总次数
+     *
+     * @param rd
+     * @return int
+     */
+    int queryOverdueNum(int rd);
 }

@@ -31,7 +31,7 @@ public class QueryRdBookController extends HttpServlet {
         int rdId = Integer.parseInt(req.getParameter("rdId"));
 
         List<Book> books = queryBookList(rdId);
-        List<Borrow> borrows = queryBorrowByBooks(rdId,books);
+        List<Borrow> borrows = queryBorrowByrdId(rdId);
         BorrowEnum borrowEnum;
 
         /**
@@ -62,9 +62,8 @@ public class QueryRdBookController extends HttpServlet {
         return borrowService.noReturnBook(rdId);
     }
 
-    public List<Borrow> queryBorrowByBooks(int rdId, List<Book> books) {
+    public List<Borrow> queryBorrowByrdId(int rdId) {
         BorrowService borrowService = new BorrowServiceImpl();
-        return borrowService.queryBorrowByBooks(rdId, books);
+        return borrowService.queryBorrowByrdId(rdId);
     }
-
 }

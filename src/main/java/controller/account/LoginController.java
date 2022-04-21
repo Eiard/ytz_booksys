@@ -7,6 +7,8 @@ import pojo.Reader;
 import pojo.ReaderType;
 import service.account.AccountService;
 import service.account.AccountServiceImpl;
+import service.borrow.BorrowService;
+import service.borrow.BorrowServiceImpl;
 import service.reader.ReaderService;
 import service.reader.ReaderServiceImpl;
 import service.readertype.ReaderTypeService;
@@ -125,12 +127,17 @@ public class LoginController extends HttpServlet {
         } else if (accountEnum == AccountEnum.LOGIN_USER_SUCCESS) {
             ReaderService readerService = new ReaderServiceImpl();
             ReaderTypeService readerTypeService = new ReaderTypeServiceImpl();
+            BorrowService borrowService = new BorrowServiceImpl();
 
             Reader reader = readerService.queryOneReader(account.getRdId());
             sendData.put("reader", reader);
 
             ReaderType readerType = readerTypeService.queryOneReaderType(reader.getRdType());
             sendData.put("readerType", readerType);
+
+            int overDueNum = borrowService.queryOverdueNum(account.getRdId());
+            sendData.put("overDueNum", overDueNum);
+
         }
 
         return sendData;

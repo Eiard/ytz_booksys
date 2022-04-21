@@ -39,7 +39,7 @@ public class BorrowMapperImpl implements BorrowMapper {
     @Override
     public int updateBorrow(Borrow borrow) {
         String sql =
-                "UPDATE borrow SET dateLendAct = ? AND isReturn = 1 " +
+                "UPDATE borrow SET dateLendAct = ? , isReturn = 1 " +
                         "WHERE rdId = ? AND bkId = ? AND isReturn = 0";
 
         return Sql.update(sql,
