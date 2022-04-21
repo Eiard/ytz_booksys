@@ -43,15 +43,18 @@ public class BorrowServiceImpl implements BorrowService {
     public List<Boolean> lendBorrows(List<Borrow> borrows, int readerTypeDayNum) {
         List<Boolean> booleans = new ArrayList<>();
 
-        SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String DataBorrow = SimpleDateFormat.format(Calendar.getInstance().getTime());
         Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String DataBorrow = SimpleDateFormat.format(calendar.getTime());
         int day = calendar.get(Calendar.DAY_OF_YEAR);
         calendar.set(Calendar.DAY_OF_YEAR, day + readerTypeDayNum);
         String DataBorrowPlan = SimpleDateFormat.format(new Date(calendar.getTimeInMillis()));
 
         for (Borrow borrow : borrows) {
 
+            /**
+             * 所有未还书籍信息
+             */
             List<Book> books = noReturnBook(borrow.getRdId());
             int booksSize = books.size();
 
@@ -59,8 +62,7 @@ public class BorrowServiceImpl implements BorrowService {
             for (Book book : books) {
                 if (borrow.getBkId() == book.getBkId()) {
                     /**
-                     * 未还的书
-                     * 又继续借阅 (默认FALSE)
+                     * 避免未还的书再借
                      * 直接break 说明这个borrow记录的书 该读者已经借阅过
                      * 去执行下一条借阅记录
                      */
@@ -68,11 +70,18 @@ public class BorrowServiceImpl implements BorrowService {
                 }
                 tick++;
             }
+            /**
+             * 说明现在借的书与之前没还的书没冲突
+             * 可以借
+             */
             if (tick == booksSize) {
                 borrow.setDateBorrow(DataBorrow);
                 borrow.setDateLendPlan(DataBorrowPlan);
                 booleans.add(lendBorrow(borrow));
             } else {
+                /**
+                 * 现在借的书 之前借了并且还没还
+                 */
                 booleans.add(false);
             }
         }
@@ -109,19 +118,19 @@ public class BorrowServiceImpl implements BorrowService {
 
     @Override
     public List<Book> noReturnBook(int rdId) {
-
-
         List<Book> books = new ArrayList<>();
 
         List<Borrow> borrowList = queryAllBorrow();
         for (Borrow borrow : borrowList) {
-            if (rdId == borrow.getRdId() && ("".equals(borrow.getDateLendAct()) || borrow.getDateLendAct() == null)) {
+            if (rdId == borrow.getRdId() && borrow.getIsReturn() == 0) {
+
                 List<Book> bookList = bookService.queryAllBook();
                 for (Book book : bookList) {
                     if (borrow.getBkId() == book.getBkId()) {
                         books.add(book);
                     }
                 }
+
             }
         }
         return books;
@@ -135,7 +144,7 @@ public class BorrowServiceImpl implements BorrowService {
         for (Book book : books) {
             for (Borrow borrow : borrowList) {
                 if (rdId == borrow.getRdId() && book.getBkId() == borrow.getBkId()
-                        && ("".equals(borrow.getDateLendAct()) || borrow.getDateLendAct() == null)) {
+                        && borrow.getIsReturn() == 0) {
                     if (borrow.getBkId() == book.getBkId()) {
                         borrows.add(borrow);
                     }

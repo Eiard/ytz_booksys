@@ -4,6 +4,8 @@ import Utils.JdbcUtils;
 import controller.controllerEnum.AccountEnum;
 import dao.book.BookMapper;
 import dao.book.BookMapperImpl;
+import dao.borrow.BorrowMapper;
+import dao.borrow.BorrowMapperImpl;
 import org.junit.Test;
 import pojo.Account;
 import pojo.Book;
@@ -26,8 +28,9 @@ public class ad12 {
     @Test
     public void asd12() {
 
-        System.out.println(AccountEnum.LOGIN_ACCOUNT_PASSWORD_ERROR.toString());
-        System.out.println(AccountEnum.LOGIN_ACCOUNT_PASSWORD_ERROR.ordinal());
+        BorrowMapper borrowMapper = new BorrowMapperImpl();
+
+        System.out.println(borrowMapper.queryAllBorrow());
 
     }
 
