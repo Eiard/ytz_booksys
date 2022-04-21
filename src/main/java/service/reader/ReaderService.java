@@ -121,4 +121,13 @@ public interface ReaderService {
      * @return Reader
      */
     Reader queryOneReader(int rdId);
+
+    /**
+     * 通过一个信息
+     * 学号 或者 姓名  或者 部门
+     * 模糊查询所有读者
+     *
+     * @return List<Reader>
+     */
+    List<Reader> fuzzyQueryReaderList(String rdInfo,String rdId);
 }

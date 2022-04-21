@@ -75,8 +75,8 @@ public class ReaderServiceImpl implements ReaderService {
         /**
          * 学号被禁用
          */
-        for (Reader reader:readers){
-            if (rdId == reader.getRdId() && reader.getRdState() == 1){
+        for (Reader reader : readers) {
+            if (rdId == reader.getRdId() && reader.getRdState() == 1) {
                 return true;
             }
         }
@@ -128,5 +128,31 @@ public class ReaderServiceImpl implements ReaderService {
             }
         }
         return null;
+    }
+
+    /**
+     * 通过一个信息
+     * 学号 或者 姓名  或者 部门
+     * 模糊查询所有读者
+     *
+     * @param rdInfo
+     * @param rdId
+     * @return
+     */
+    @Override
+    public List<Reader> fuzzyQueryReaderList(String rdInfo, String rdId) {
+        List<Reader> readerList = new ArrayList<>();
+        List<Reader> readers = queryAllReader();
+        for (Reader reader : readers) {
+
+            String readerIdStr = String.valueOf(reader.getRdId());
+
+            if (reader.getRdName().contains(rdInfo) ||
+                    reader.getRdDept().contains(rdInfo) ||
+                    readerIdStr.contains(rdId)) {
+                readerList.add(reader);
+            }
+        }
+        return readerList;
     }
 }
