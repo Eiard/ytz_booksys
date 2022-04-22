@@ -129,5 +129,5 @@ public interface ReaderService {
      *
      * @return List<Reader>
      */
-    List<Reader> fuzzyQueryReaderList(String rdInfo,String rdId);
+    List<Reader> fuzzyQueryReaderList(String rdInfo);
 }

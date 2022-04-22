@@ -27,13 +27,15 @@ public class ad12 {
 
     @Test
     public void asd12() {
+        Account account = new Account();
+        account.setIdentification("1");
+        account.setPassword("1");
+        account.setQQ("234");
+        account.setRdId(1);
+        account.setRoot((byte) 0);
 
-        List<Integer> integers = new ArrayList<>();
+        System.out.println(FastJsonUtils.objectToJsonString(account));
 
-        integers.add(1);
-        integers.add(5);
-
-        System.out.println(FastJsonUtils.listToJsonString(integers));
 
 
     }

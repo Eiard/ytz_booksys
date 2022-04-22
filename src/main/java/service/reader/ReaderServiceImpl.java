@@ -136,20 +136,15 @@ public class ReaderServiceImpl implements ReaderService {
      * 模糊查询所有读者
      *
      * @param rdInfo
-     * @param rdId
      * @return
      */
     @Override
-    public List<Reader> fuzzyQueryReaderList(String rdInfo, String rdId) {
+    public List<Reader> fuzzyQueryReaderList(String rdInfo) {
         List<Reader> readerList = new ArrayList<>();
         List<Reader> readers = queryAllReader();
         for (Reader reader : readers) {
-
-            String readerIdStr = String.valueOf(reader.getRdId());
-
             if (reader.getRdName().contains(rdInfo) ||
-                    reader.getRdDept().contains(rdInfo) ||
-                    readerIdStr.contains(rdId)) {
+                    reader.getRdDept().contains(rdInfo)) {
                 readerList.add(reader);
             }
         }

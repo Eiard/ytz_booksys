@@ -6,12 +6,13 @@ package controller.controllerEnum;
  */
 public enum ReaderEnum {
     /**
-     * 查询成功
-     * 模糊查询的输入 不是学号
+     * 具体学号查询成功
+     * 部门 姓名 模糊查询成功
      * 模糊查询的输入 是学号
      */
-    QUERY_IS_NOT_RDID_SUCCESS,
-    QUERY_IS_RDID_SUCCESS,
+    QUERY_RDID_SUCCESS,
+    QUERY_DEPT_RDNAME_SUCCESS,
+    QUERY_STATUS_ERROR,
 
 
 
