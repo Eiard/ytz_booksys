@@ -28,9 +28,13 @@ public class ad12 {
     @Test
     public void asd12() {
 
-        BorrowMapper borrowMapper = new BorrowMapperImpl();
+        List<Integer> integers = new ArrayList<>();
 
-        System.out.println(borrowMapper.queryAllBorrow());
+        integers.add(1);
+        integers.add(5);
+
+        System.out.println(FastJsonUtils.listToJsonString(integers));
+
 
     }
 

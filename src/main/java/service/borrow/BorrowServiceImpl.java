@@ -167,7 +167,7 @@ public class BorrowServiceImpl implements BorrowService {
 
 
     public List<Borrow> buildBorrowList( Integer rdId,List<Integer> bkIds) {
-        List<Borrow> borrows = null;
+        List<Borrow> borrows = new ArrayList<>();
         for (int i = 0; i < bkIds.size(); i++) {
             Borrow borrow = new Borrow();
             borrow.setRdId(rdId);

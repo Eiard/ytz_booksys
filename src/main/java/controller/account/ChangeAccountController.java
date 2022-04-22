@@ -41,6 +41,11 @@ public class ChangeAccountController extends HttpServlet {
         }
         String newPassword = req.getParameter("newPassword");
 
+
+
+
+
+
     }
 
     protected AccountEnum changeAccountInfo(Account account, String newPassword) {
