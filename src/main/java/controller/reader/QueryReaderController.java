@@ -53,8 +53,8 @@ public class QueryReaderController extends HttpServlet {
             sendData.put("readers", readers);
         } else if ("1".equals(status)) {
             readerEnum = ReaderEnum.QUERY_DEPT_RDNAME_SUCCESS;
-            String bkInfo = req.getParameter("bkInfo");
-            readers = fuzzyQueryReaderList(bkInfo);
+            String rdInfo = req.getParameter("rdInfo");
+            readers = fuzzyQueryReaderList(rdInfo);
             sendData.put("readers", readers);
         } else {
             readerEnum = ReaderEnum.QUERY_STATUS_ERROR;
