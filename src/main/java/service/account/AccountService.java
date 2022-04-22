@@ -1,5 +1,6 @@
 package service.account;
 
+import controller.controllerEnum.AccountEnum;
 import pojo.Account;
 
 import java.util.List;
@@ -111,4 +112,14 @@ public interface AccountService {
      * @return Account
      */
     Account queryOneAccount(String identification);
+
+    /**
+     * Check Login Information
+     * 登录判断
+     *
+     * @param identification
+     * @param password
+     * @return AccountEnum
+     */
+    AccountEnum login(String identification, String password);
 }

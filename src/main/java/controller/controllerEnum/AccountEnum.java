@@ -37,20 +37,20 @@ public enum AccountEnum {
 
     /**
      * 更改读者信息 QQ 和密码
-     *      修改QQ成功
-     *      修改QQ失败
-     *      修改密码成功
-     *      账号验证失败 (先传输密码进行一次验证  通过验证后才能修改真正的密码)
+     *      修改信息成功
+     *      修改信息失败
      *      Account JSON 格式有问题
      */
-    CHANGE_QQ_SUCCESS,
-    CHANGE_QQ_ERROR,
-    CHANGE_PASSWORD_SUCCESS,
-    CHANGE_PASSWORD_ERROR,
+    CHANGE_INFORMATION_SUCCESS,
+    CHANGE_INFORMATION_ERROR,
     CHANGE_ACCOUNT_JSON_TYPE_ERROR,
+    CHANGE_ROOT_ERROR,
+
+
 
     /**
      * 未知错误
      */
     UNKNOWN_ERROR,
+    STATUS_ERROR,
 }
