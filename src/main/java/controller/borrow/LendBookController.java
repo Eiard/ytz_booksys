@@ -29,23 +29,39 @@ public class LendBookController extends HttpServlet {
         resp.setHeader("content-type", "text/html;charset=utf-8");
         PrintWriter out = resp.getWriter();
 
-        List<Borrow> borrows;
+        List<Integer> bkIds;
+        Integer rdId;
+        int readerTypeDayNum;
+
         BorrowEnum borrowEnum = BorrowEnum.LEND_SUCCESS;
         ResponseDataMap sendData = new ResponseDataMap();
         try {
-            borrows = FastJsonUtils.strToJavaBeanList(req.getParameter("borrows"), new TypeReference<List<Borrow>>() {
+            rdId = FastJsonUtils.strToJavaBean(req.getParameter("rdId"), new TypeReference<>() {
             });
+            bkIds = FastJsonUtils.strToJavaBeanList(req.getParameter("bkIds"), new TypeReference<>() {
+            });
+            readerTypeDayNum = Integer.parseInt(req.getParameter("readerTypeDayNum"));
         } catch (Exception e) {
-            borrowEnum = BorrowEnum.LEND_FORMAT_ERROR;
+            borrowEnum = BorrowEnum.RETURN_FORMAT_ERROR;
             sendData.setStatus(borrowEnum.ordinal());
             sendData.setMsg(borrowEnum.toString());
             out.write(sendData.toJson());
             return;
         }
+
+        BorrowService borrowService = new BorrowServiceImpl();
+        List<Borrow> borrows = borrowService.buildBorrowList(rdId, bkIds);
+
         /**
-         * 可借天数
+         * 传过来没有一本书
          */
-        int readerTypeDayNum = Integer.parseInt(req.getParameter("readerTypeDayNum"));
+        if (borrows == null) {
+            borrowEnum = BorrowEnum.LEND_NONE_BOOK_ERROR;
+            sendData.setStatus(borrowEnum.ordinal());
+            sendData.setMsg(borrowEnum.toString());
+            out.write(sendData.toJson());
+        }
+
         /**
          * 一次性多次借书 返回对应状态
          */

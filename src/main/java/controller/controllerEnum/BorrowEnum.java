@@ -7,6 +7,7 @@ public enum BorrowEnum {
      */
     LEND_SUCCESS,
     LEND_FORMAT_ERROR,
+    LEND_NONE_BOOK_ERROR,
 
     /**
      * 还书成功
@@ -14,6 +15,7 @@ public enum BorrowEnum {
      */
     RETURN_SUCCESS,
     RETURN_FORMAT_ERROR,
+    RETURN_NONE_BOOK_ERROR,
 
     /**
      * 查询成功
@@ -21,6 +23,7 @@ public enum BorrowEnum {
      */
     QUERY_SUCCESS,
     QUERY_NONE_BOOK_ERROR,
+    QUERY_FORMAT_ERROR,
 
     /**
      * 未知错误

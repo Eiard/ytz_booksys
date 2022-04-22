@@ -27,12 +27,22 @@ public class QueryRdBookController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setHeader("content-type", "text/html;charset=utf-8");
         PrintWriter out = resp.getWriter();
+        int rdId;
+        BorrowEnum borrowEnum;
+        ResponseDataMap sendData = new ResponseDataMap();
 
-        int rdId = Integer.parseInt(req.getParameter("rdId"));
+        try {
+            rdId = Integer.parseInt(req.getParameter("rdId"));
+        } catch (Exception e) {
+            borrowEnum = BorrowEnum.QUERY_FORMAT_ERROR;
+            sendData.setStatus(borrowEnum.ordinal());
+            sendData.setMsg(borrowEnum.toString());
+            out.write(sendData.toJson());
+            return;
+        }
 
         List<Book> books = queryBookList(rdId);
         List<Borrow> borrows = queryBorrowByrdId(rdId);
-        BorrowEnum borrowEnum;
 
         /**
          * 没有未还的书的记录 QUERY_NONE_BOOK_ERROR
@@ -47,11 +57,10 @@ public class QueryRdBookController extends HttpServlet {
         /**
          * 回复数据封装
          */
-        ResponseDataMap sendData = new ResponseDataMap();
         sendData.setStatus(borrowEnum.ordinal());
         sendData.setMsg(borrowEnum.toString());
         sendData.setData(books);
-        sendData.put("borrows",borrows);
+        sendData.put("borrows", borrows);
 
         out.write(sendData.toJson());
     }

@@ -29,11 +29,15 @@ public class ReturnBookController extends HttpServlet {
         resp.setHeader("content-type", "text/html;charset=utf-8");
         PrintWriter out = resp.getWriter();
 
-        List<Borrow> borrows;
+        List<Integer> bkIds;
+        Integer rdId;
+
         BorrowEnum borrowEnum = BorrowEnum.RETURN_SUCCESS;
         ResponseDataMap sendData = new ResponseDataMap();
         try {
-            borrows = FastJsonUtils.strToJavaBeanList(req.getParameter("borrows"), new TypeReference<List<Borrow>>() {
+            rdId = FastJsonUtils.strToJavaBean(req.getParameter("rdId"), new TypeReference<>() {
+            });
+            bkIds = FastJsonUtils.strToJavaBeanList(req.getParameter("bkIds"), new TypeReference<>() {
             });
         } catch (Exception e) {
             borrowEnum = BorrowEnum.RETURN_FORMAT_ERROR;
@@ -41,6 +45,19 @@ public class ReturnBookController extends HttpServlet {
             sendData.setMsg(borrowEnum.toString());
             out.write(sendData.toJson());
             return;
+        }
+
+        BorrowService borrowService = new BorrowServiceImpl();
+        List<Borrow> borrows = borrowService.buildBorrowList(rdId, bkIds);
+
+        /**
+         * 传过来没有一本书
+         */
+        if (borrows == null) {
+            borrowEnum = BorrowEnum.RETURN_NONE_BOOK_ERROR;
+            sendData.setStatus(borrowEnum.ordinal());
+            sendData.setMsg(borrowEnum.toString());
+            out.write(sendData.toJson());
         }
 
         List<Boolean> booleans = ReturnBooks(borrows);
@@ -58,6 +75,4 @@ public class ReturnBookController extends HttpServlet {
         BorrowService borrowService = new BorrowServiceImpl();
         return borrowService.returnBorrows(borrows);
     }
-
-
 }

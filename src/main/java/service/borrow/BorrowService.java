@@ -90,4 +90,15 @@ public interface BorrowService {
      * @return int
      */
     int queryOverdueNum(int rd);
+
+    /**
+     * Build Borrow List
+     * Common interface
+     * 通过List<Integer> bkIds 和 rdId 生成List<Borrow>
+     *
+     * @param rdId
+     * @param bkIds
+     * @return List<Borrow>
+     */
+    List<Borrow> buildBorrowList( Integer rdId,List<Integer> bkIds);
 }

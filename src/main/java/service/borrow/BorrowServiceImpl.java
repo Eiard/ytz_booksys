@@ -150,15 +150,6 @@ public class BorrowServiceImpl implements BorrowService {
         return borrows;
     }
 
-
-    /**
-     * Query Overdue Num
-     * Common interface
-     * 逾期总次数
-     *
-     * @param rdId
-     * @return int
-     */
     @Override
     public int queryOverdueNum(int rdId) {
         List<Borrow> borrows = queryAllBorrow();
@@ -172,5 +163,17 @@ public class BorrowServiceImpl implements BorrowService {
         }
 
         return overDueNum;
+    }
+
+
+    public List<Borrow> buildBorrowList( Integer rdId,List<Integer> bkIds) {
+        List<Borrow> borrows = null;
+        for (int i = 0; i < bkIds.size(); i++) {
+            Borrow borrow = new Borrow();
+            borrow.setRdId(rdId);
+            borrow.setBkId(bkIds.get(i));
+            borrows.add(borrow);
+        }
+        return borrows;
     }
 }
