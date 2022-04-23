@@ -26,7 +26,7 @@ import java.util.List;
 @WebServlet(name = "QueryReaderController", urlPatterns = {"/QueryReaderController"})
 public class QueryReaderController extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setHeader("content-type", "text/html;charset=utf-8");
         PrintWriter out = resp.getWriter();
 

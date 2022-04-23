@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图书管理系统</title>
+  <script src="js/jquery-3.6.0.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/jquery.cookie.min.js"></script>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- 引入图标 -->
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">   
+  <link rel="stylesheet" href="css/nav.css">
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    /* 通过阿里巴巴引入外部图标 */
+    @font-face {
+    font-family: 'iconfont';  /* project id 3326910 */
+    src: url('');
+    src: url('?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_3326910_rtmdainydh.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_3326910_rtmdainydh.woff') format('woff'),
+    url('//at.alicdn.com/t/font_3326910_rtmdainydh.ttf') format('truetype'),
+    url('#iconfont') format('svg');
+  }
+  .iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .tab-content{
+    height: 600px;
+    width: 100%;
+    /* background-color: rgb(168, 34, 34); */
+
+  }
+  .function-area{
+    position: relative;
+    float: left;
+    height: 600px;
+    width: 50%;
+    /* background-color: aqua; */
+  }
+  .function-area input{
+    width: 300px;
+  }
+  .note-area{
+    position: relative;
+    float: left;
+    height: 600px;
+    width: 50%;
+    /* background-color: bisque; */
+  }
+  </style>
+</head>
+<body>
+  <!-- 页面导航 -->
+  <nav>
+    <ul class="nav justify-content-center nav-pills">
+      <li class="nav-item">
+        <a class="nav-link " href="index.html">首页</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="usermanage.html">用户信息管理</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="bookmanage.html">图书信息管理</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="borrowmanage.html">借书信息管理</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="container">
+    <!-- 功能导航栏 -->
+    <br><br>
+    <!-- 选项卡 -->
+    <div>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">添加用户</a>
+        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">查询用户信息</a>
+        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">删除用户</a>
+      </div>
+    </div>
+    <!-- 选项卡控制的区域 -->
+    <div class="tab-content" id="nav-tabContent">
+      <!-- 选项卡一：添加用户 -->
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <br>
+        <h3>添加用户</h3>
+        <br>
+        <div class="function-area">
+          <div class="form-group">
+            <label for="account">用户账号：</label>
+            <span class="badge badge-primary">必填</span>
+            <input type="text" class="form-control" id="account" aria-describedby="emailHelp" placeholder="输入账号">
+            <br>
+            <label for="password">初始密码：</label>
+            <span class="badge badge-primary">必填</span>
+            <input type="text" class="form-control" id="password" aria-describedby="emailHelp" placeholder="输入密码">
+            <br>
+            <label for="name">用户姓名：</label>
+            <span class="badge badge-primary">必填</span>
+            <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="输入姓名">
+            <br>
+            <label for="name">QQ:</label>
+            <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="输入QQ">
+          </div>
+        </div>
+        <div class="note-area">
+          <div style="height: 50%;">
+            <h4>注意事项</h4>
+            <br>
+            <p>1、用户姓名、密码为必填项</p>
+            <p>2、用户区域号请查询学校各部门所属区号</p>
+            <p>3、用户信息默认有效时间为4年，如因保研、学制延长、延毕等原因导致使用时限变长，须再次激活</p>
+          </div>
+          <div>
+            <button id="adduser-submit-btn" type="button" class="btn btn-lg btn-primary">添加用户</button>
+          </div>
+        </div>
+      </div>
+      <!-- 选项卡二：修改用户信息 -->
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <br>
+        <h3>查询用户信息</h3>
+        <br>
+        <div class="input-group mb-3" style="width: 300px;" >
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">学号</span>
+          </div>
+          <input type="text" class="form-control" placeholder="请输入学号" aria-label="Recipient's username" aria-describedby="button-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button" id="search-user-btn">查询</button>
+          </div>
+        </div>
+        <div>
+
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+        <div class="function-area">
+          dsf
+      </div>
+      <div class="note-area">
+
+      </div>
+      </div>
+    </div>
+  </div>
+<script>
+  $('#adduser-submit-btn').click(function(){
+
+  })
+  $('#search-user-btn').click(function(){
+    
+  })
+</script>
+
+</body>
+</html>
