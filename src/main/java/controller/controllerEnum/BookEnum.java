@@ -17,11 +17,9 @@ public enum BookEnum {
 
 
     /**
-     * 改变书籍的状态
-     * 书Id不存在
+     * 修改图书信息
      */
-    CHANGE_BOOK_STATUS_SUCCESS,
-    CHANGE_BOOK_BKID_NOT_EXIST_ERROR,
+    CHANGE_BOOK_SUCCESS,
     CHANGE_BOOK_IMAGE_ERROR,
 
 

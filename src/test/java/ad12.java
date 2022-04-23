@@ -27,16 +27,14 @@ public class ad12 {
 
     @Test
     public void asd12() {
-        Account account = new Account();
-        account.setIdentification("1");
-        account.setPassword("1");
-        account.setQQ("234");
-        account.setRdId(1);
-        account.setRoot((byte) 0);
+        Book book = new Book();
+        book.setBkPrice(1);
+        book.setBkName("132");
+        book.setBkAuthor("12345");
+        book.setBkPress("jsad");
+        book.setBkNum(11);
 
-        System.out.println(FastJsonUtils.objectToJsonString(account));
-
-
+        System.out.println(FastJsonUtils.objectToJsonString(book));
 
     }
 

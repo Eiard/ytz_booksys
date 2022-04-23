@@ -128,7 +128,7 @@ public class ChangeBookController extends HttpServlet {
                 outputStream2.write(buf, 0, len);
             }
 
-            return BookEnum.CHANGE_BOOK_STATUS_SUCCESS;
+            return BookEnum.CHANGE_BOOK_SUCCESS;
         }
 
         return BookEnum.UNKNOWN_ERROR;
