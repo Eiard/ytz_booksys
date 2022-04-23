@@ -195,7 +195,7 @@
         fileFormData.append("book",json);
       $.ajax({
           method: 'POST',
-          url: '/AddBookController',
+          url: '/ChangeBookController',
           data: fileFormData,
           // 不修改 Content-Type 属性，使用 FormData 默认的 Content-Type 值
           contentType: false,
