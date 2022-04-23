@@ -27,14 +27,6 @@ public class ad12 {
 
     @Test
     public void asd12() {
-        Book book = new Book();
-        book.setBkPrice(1);
-        book.setBkName("132");
-        book.setBkAuthor("12345");
-        book.setBkPress("jsad");
-        book.setBkNum(11);
-
-        System.out.println(FastJsonUtils.objectToJsonString(book));
 
     }
 
