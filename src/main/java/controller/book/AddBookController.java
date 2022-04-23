@@ -123,7 +123,7 @@ public class AddBookController extends HttpServlet {
             }
 
             books.get(0).setBkImageUrl("/BookImage/" + fileName + ".png");
-
+            books.get(0).setBkState((byte) 1);
             bookService.updateBook(books.get(0));
 
             return BookEnum.ADD_BOOK_SUCCESS;
