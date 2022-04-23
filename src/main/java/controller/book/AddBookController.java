@@ -28,26 +28,27 @@ import java.util.List;
 public class AddBookController extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setHeader("content-type", "text/html;charset=utf-8");
         PrintWriter out = resp.getWriter();
 
-        /**
-         * 默认未知错误
-         */
-        BookEnum bookEnum = BookEnum.UNKNOWN_ERROR;
-        if (ServletFileUpload.isMultipartContent(req)) {      //如果对象是multipart请求
-            try {
-                bookEnum = addBook(req);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
+        BookEnum bookEnum;
+        ResponseDataMap sendData = new ResponseDataMap();
+
+        try {
+            bookEnum = addBook(req);
+        } catch (Exception e) {
+            bookEnum = BookEnum.UNKNOWN_ERROR;
+            sendData.setStatus(bookEnum.ordinal());
+            sendData.setMsg(bookEnum.toString());
+            return;
         }
 
         /**
          * 回复数据封装
          */
-        ResponseDataMap sendData = new ResponseDataMap();
+
         sendData.setStatus(bookEnum.ordinal());
         sendData.setMsg(bookEnum.toString());
 
@@ -73,9 +74,9 @@ public class AddBookController extends HttpServlet {
             if (item.isFormField()) {     //如果item为普通表单
                 //这里获得的是普通的表单，即普通键值对，存在汉语字符串编码问题
                 String key = item.getFieldName();   //键
-                String jsonString = item.getString();     //值
+                String jsonString = item.getString("utf-8");     //值
                 if (key.equals("book")) {
-                    book = FastJsonUtils.strToJavaBean(jsonString, new TypeReference<Book>() {
+                    book = FastJsonUtils.strToJavaBean(jsonString, new TypeReference<>() {
                     });
                 }
             } else {  // 找到图片信息 临时取出来
@@ -94,7 +95,6 @@ public class AddBookController extends HttpServlet {
              * 处理图片
              */
             String fileName = bkId.toString();
-            System.out.println("**=>" + fileName);
             if (imageItem == null) {
                 return BookEnum.ADD_BOOK_IMAGE_ERROR;
             }
@@ -108,24 +108,23 @@ public class AddBookController extends HttpServlet {
              */
             String dynamicPath = this.getServletContext().getRealPath("/BookImage/");
             String staticPath = "D:/Computer/Code/Java/BookServer/src/main/webapp/BookImage/";
-            File dynamicFile = new File(dynamicPath, fileName);
-            File staticFile = new File(staticPath, fileName);
+            File dynamicFile = new File(dynamicPath, fileName + ".png");
+            File staticFile = new File(staticPath, fileName + ".png");
 
             int len = -1;
             byte[] buf = new byte[1024];
 
             outputStream1 = new FileOutputStream(dynamicFile);
+            outputStream2 = new FileOutputStream(staticFile);
 
             while ((len = inputStream.read(buf)) != -1) {
                 outputStream1.write(buf, 0, len);
-            }
-
-            outputStream2 = new FileOutputStream(staticFile);
-            len = -1;
-            buf = new byte[1024];
-            while ((len = inputStream.read(buf)) != -1) {
                 outputStream2.write(buf, 0, len);
             }
+
+            books.get(0).setBkImageUrl("/BookImage/" + fileName + ".png");
+
+            bookService.updateBook(books.get(0));
 
             return BookEnum.ADD_BOOK_SUCCESS;
         } else if (status == 2) {
@@ -133,6 +132,4 @@ public class AddBookController extends HttpServlet {
         }
         return BookEnum.UNKNOWN_ERROR;
     }
-
-
 }
