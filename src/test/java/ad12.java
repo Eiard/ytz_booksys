@@ -27,7 +27,8 @@ public class ad12 {
 
     @Test
     public void asd12() {
-
+        System.out.println(AccountEnum.LOGIN_USER_SUCCESS.ordinal());
+        System.out.println(AccountEnum.LOGIN_USER_SUCCESS.toString());
     }
 
 }

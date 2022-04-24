@@ -96,10 +96,7 @@ public class AccountServiceImpl implements AccountService {
 
     public AccountEnum login(String identification, String password) {
 
-        AccountService accountService = new AccountServiceImpl();
-
-
-        int status = accountService.identificationAndPassword(identification, password);
+        int status = identificationAndPassword(identification, password);
 
         /**
          *   账号或密码错误   LOGIN_ACCOUNT_PASSWORD_ERROR

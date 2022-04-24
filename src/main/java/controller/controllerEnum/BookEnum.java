@@ -15,7 +15,6 @@ public enum BookEnum {
     ADD_SAME_BOOK_ERROR,
     ADD_BOOK_IMAGE_ERROR,
 
-
     /**
      * 修改图书信息
      */

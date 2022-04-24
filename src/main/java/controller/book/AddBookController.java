@@ -32,7 +32,6 @@ public class AddBookController extends HttpServlet {
         resp.setHeader("content-type", "text/html;charset=utf-8");
         PrintWriter out = resp.getWriter();
 
-
         BookEnum bookEnum;
         ResponseDataMap sendData = new ResponseDataMap();
 
@@ -42,6 +41,7 @@ public class AddBookController extends HttpServlet {
             bookEnum = BookEnum.UNKNOWN_ERROR;
             sendData.setStatus(bookEnum.ordinal());
             sendData.setMsg(bookEnum.toString());
+            out.write(sendData.toJson());
             return;
         }
 
