@@ -45,6 +45,7 @@ public class ChangeBookController extends HttpServlet {
             bookEnum = BookEnum.UNKNOWN_ERROR;
             sendData.setStatus(bookEnum.ordinal());
             sendData.setMsg(bookEnum.toString());
+            out.write(sendData.toJson());
             return;
         }
 
@@ -77,7 +78,7 @@ public class ChangeBookController extends HttpServlet {
             if (item.isFormField()) {     //如果item为普通表单
                 //这里获得的是普通的表单，即普通键值对，存在汉语字符串编码问题
                 String key = item.getFieldName();   //键
-                String jsonString = item.getString();     //值
+                String jsonString = item.getString("utf-8");     //值
                 if (key.equals("book")) {
                     book = FastJsonUtils.strToJavaBean(jsonString, new TypeReference<>() {
                     });
